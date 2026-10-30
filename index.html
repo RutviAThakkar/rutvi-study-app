@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Rutvi's Study App" />
-  <title>RUTVI’S STUDY APP - Class 7 Maharashtra Board</title>
+  <title>RUTVI’S STUDY APP - Complete Class 7 Maharashtra Board</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -168,7 +168,7 @@
     .hero-text p {
       color: var(--text-muted);
       font-size: 0.95rem;
-      max-width: 520px;
+      max-width: 580px;
     }
 
     .overall-progress-bar-wrap {
@@ -305,48 +305,54 @@
     .chapter-list {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
     }
 
     .chapter-card {
       background: var(--bg-surface);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius-md);
-      padding: 20px;
+      padding: 18px 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .chapter-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
     }
 
     .chapter-meta h4 {
       font-family: var(--font-display);
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       margin-bottom: 4px;
     }
 
     .chapter-meta p {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
+      line-height: 1.4;
     }
 
     .chapter-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       flex-shrink: 0;
     }
 
     .btn-action {
       border: none;
-      padding: 10px 18px;
+      padding: 10px 16px;
       border-radius: var(--radius-sm);
       font-weight: 800;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
@@ -379,7 +385,7 @@
       position: absolute;
       top: 16px;
       left: 16px;
-      background: rgba(0, 0, 0, 0.65);
+      background: rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(8px);
       padding: 6px 14px;
       border-radius: 999px;
@@ -390,13 +396,14 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      z-index: 5;
     }
 
     .audio-cue-tag {
       position: absolute;
       bottom: 16px;
       right: 16px;
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.85);
       backdrop-filter: blur(8px);
       padding: 6px 14px;
       border-radius: 999px;
@@ -407,6 +414,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      z-index: 5;
     }
 
     .movie-script-box {
@@ -603,7 +611,7 @@
       <div class="brand-icon">📚</div>
       <div>
         <div class="brand-title">RUTVI’S STUDY APP</div>
-        <div class="brand-sub">CLASS 7 • MAHARASHTRA STATE BOARD</div>
+        <div class="brand-sub">CLASS 7 • MAHARASHTRA STATE BOARD COMPLETE SYLLABUS</div>
       </div>
     </div>
     <div class="gamify-hud">
@@ -613,11 +621,12 @@
   </header>
 
   <main>
+    <!-- 1. DASHBOARD VIEW -->
     <section id="view-dashboard" class="view-panel active">
       <div class="hero-banner">
         <div class="hero-text">
           <h1>Welcome back, Rutvi! 🌟</h1>
-          <p>Ready for today's visual lessons? Dive into your 7 subjects, watch animated chapter stories, and ace the exam challenges.</p>
+          <p>Your complete 7th Standard Maharashtra State Board learning hub. Choose any subject to explore every chapter with animated movie stories and tests.</p>
         </div>
         <div>
           <div style="font-size: 0.85rem; font-weight: 800; color: #a5f3fc;">Overall Mastery: <span id="overall-percentage">0%</span></div>
@@ -627,23 +636,25 @@
         </div>
       </div>
 
-      <div class="section-title">✨ Select a Subject to Begin</div>
+      <div class="section-title">✨ All 7 Subjects (Full Syllabus)</div>
       <div class="subject-grid" id="subject-cards-container"></div>
     </section>
 
+    <!-- 2. SUBJECT CHAPTER LIST VIEW -->
     <section id="view-subject" class="view-panel">
-      <button class="btn-back" onclick="navigateToDashboard()">← Back to Dashboard</button>
+      <button class="btn-back" onclick="navigateToDashboard()">← Back to All Subjects</button>
       <div class="chapter-hero" id="subject-hero-card"></div>
-      <div class="section-title">📖 Chapter Lessons & Exams</div>
+      <div class="section-title" id="subject-chapter-heading">📖 All Chapters</div>
       <div class="chapter-list" id="chapters-container"></div>
     </section>
 
+    <!-- 3. VISUAL MOVIE / STORY SCENE PLAYER VIEW -->
     <section id="view-movie" class="view-panel">
       <button class="btn-back" onclick="navigateBackToSubject()">← Back to Chapters</button>
       
       <div class="movie-player-container">
         <div class="movie-screen" id="movie-screen">
-          <div class="scene-overlay-badge" id="scene-badge">🎬 Scene 1 of 2</div>
+          <div class="scene-overlay-badge" id="scene-badge">🎬 Scene 1 of 1</div>
           <div class="audio-cue-tag" id="audio-cue">🔊 Audio Cue</div>
           <div id="visual-stage-container" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;"></div>
         </div>
@@ -656,20 +667,20 @@
         <div class="movie-controls">
           <div class="scene-dots" id="scene-dots-container"></div>
           <div class="scene-nav-buttons">
-            <button class="btn-circle" onclick="speakCurrentScript()" title="Listen to Narration">🔊</button>
-            <button class="btn-circle" onclick="prevScene()" id="btn-prev-scene">◀</button>
-            <button class="btn-circle" onclick="nextScene()" id="btn-next-scene" style="background: var(--accent-primary);">▶</button>
+            <button class="btn-circle" onclick="speakCurrentScript()" title="Listen to Voice Narration">🔊</button>
+            <button class="btn-action btn-quiz" onclick="startQuizFromMovie()" style="margin-left: 8px;">📝 Take Chapter Quiz →</button>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- 4. INTERACTIVE QUIZ ARENA VIEW -->
     <section id="view-quiz" class="view-panel">
       <button class="btn-back" onclick="navigateBackToSubject()">← Exit Quiz</button>
       
       <div class="quiz-card-container">
         <div class="quiz-header">
-          <span class="quiz-progress-text" id="quiz-question-counter">Question 1 of 2</span>
+          <span class="quiz-progress-text" id="quiz-question-counter">Question 1 of 1</span>
           <span class="hud-chip stars" id="quiz-live-score">⭐ Score: 0</span>
         </div>
 
@@ -681,11 +692,12 @@
         <div class="explanation-callout" id="quiz-explanation"></div>
 
         <div style="text-align: right;">
-          <button class="btn-action btn-quiz" id="btn-quiz-next" style="display:none; margin-left:auto;" onclick="nextQuizQuestion()">Next Question →</button>
+          <button class="btn-action btn-quiz" id="btn-quiz-next" style="display:none; margin-left:auto;" onclick="finishQuiz()">Finish & Unlock Rewards →</button>
         </div>
       </div>
     </section>
 
+    <!-- 5. RESULTS & REWARD VIEW -->
     <section id="view-result" class="view-panel">
       <div class="quiz-card-container result-hero">
         <div class="trophy-bounce">🏆</div>
@@ -697,692 +709,385 @@
           <div class="hud-chip xp" style="font-size:1.1rem; padding:10px 20px;">⚡ +<span id="earned-xp">60</span> XP</div>
         </div>
 
-        <button class="btn-action btn-movie" style="margin: 0 auto;" onclick="navigateToDashboard()">Return to Subject Dashboard</button>
+        <button class="btn-action btn-movie" style="margin: 0 auto;" onclick="navigateBackToSubject()">Return to Chapters</button>
       </div>
     </section>
   </main>
 
   <script>
+    /* =====================================================================
+       COMPLETE MAHARASHTRA STATE BOARD CLASS 7 FULL SYLLABUS DATABASE
+       ===================================================================== */
     const SYLLABUS_DATA = [
       {
         id: "science",
         title: "General Science",
-        vernacular: "सामान्य विज्ञान",
+        vernacular: "सामान्य विज्ञान (सर्व २० धडे)",
         icon: "🔬",
         themeColor: "#10b981",
-        summary: "Living adaptations, plant anatomy, forces, energy, and digestion.",
+        summary: "Complete syllabus: All 20 Chapters including Biology, Physics, Chemistry & Astronomy.",
         chapters: [
-          {
-            id: "sci-ch1",
-            number: 1,
-            title: "The Living World: Adaptations and Classification",
-            tagline: "Explore how cacti, snow leopards, and fish evolve to master extreme habitats.",
-            scenes: [
-              {
-                number: 1,
-                title: "Thar Desert: The Thorny Survivor",
-                directorNote: "Wide cinematic shot across scorching desert sands. Slow zoom onto a green cactus.",
-                audioCue: "Dry whistling desert breeze and heat shimmer",
-                script: "Welcome to the scorching Thar Desert. Water is exceedingly scarce. Notice how the Cactus survives: its leaves are modified into sharp thorns to eliminate transpiration! Its fleshy stem turns bright green to perform photosynthesis and store water.",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#f59e0b" opacity="0.3"/>
-                    <circle cx="500" cy="80" r="45" fill="#fef08a" />
-                    <path d="M0 240 Q150 180 300 250 T600 230 L600 340 L0 340 Z" fill="#d97706"/>
-                    <path d="M0 270 Q200 220 400 280 T600 260 L600 340 L0 340 Z" fill="#b45309"/>
-                    <g transform="translate(250, 140)">
-                      <rect x="35" y="20" width="30" height="130" rx="15" fill="#15803d"/>
-                      <path d="M35 80 H15 Q5 80 5 60 V40 Q5 30 15 30 H20" fill="none" stroke="#15803d" stroke-width="14" stroke-linecap="round"/>
-                      <path d="M65 95 H85 Q95 95 95 75 V60 Q95 50 85 50 H80" fill="none" stroke="#15803d" stroke-width="14" stroke-linecap="round"/>
-                      <line x1="25" y1="50" x2="15" y2="45" stroke="#fef08a" stroke-width="3"/>
-                      <line x1="75" y1="85" x2="85" y2="80" stroke="#fef08a" stroke-width="3"/>
-                      <line x1="45" y1="60" x2="45" y2="45" stroke="#fef08a" stroke-width="3"/>
-                    </g>
-                  </svg>
-                `
-              },
-              {
-                number: 2,
-                title: "Deep Ocean: Spindle-Shaped Fish",
-                directorNote: "Underwater tracking shot. Glistening azure light filtering through ocean currents.",
-                audioCue: "Gentle bubbling underwater ambiance",
-                script: "Now dive beneath the ocean waves! Look at the fish gliding through the water. Its body is streamlined and spindle-shaped—tapering at both ends like a boat to reduce water resistance. Gills extract dissolved oxygen while fins and air bladders keep it steering smoothly.",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#0284c7" opacity="0.4"/>
-                    <circle cx="120" cy="180" r="14" fill="#bae6fd" opacity="0.6"/>
-                    <circle cx="140" cy="120" r="8" fill="#bae6fd" opacity="0.4"/>
-                    <g transform="translate(180, 100)">
-                      <polygon points="40,70 0,25 0,115" fill="#f97316"/>
-                      <ellipse cx="140" cy="70" rx="110" ry="48" fill="#fb923c"/>
-                      <circle cx="210" cy="60" r="8" fill="#ffffff"/>
-                      <circle cx="212" cy="60" r="4" fill="#000000"/>
-                      <path d="M120 70 Q90 95 125 105 Z" fill="#ea580c"/>
-                    </g>
-                  </svg>
-                `
-              }
-            ],
-            quiz: [
-              {
-                q: "Why are the leaves of desert plants (like Cactus) modified into sharp thorns?",
-                options: [
-                  "To attract morning desert birds",
-                  "To prevent loss of water through transpiration",
-                  "To absorb nitrogen directly from the desert air",
-                  "To produce sweet fragrant pollen"
-                ],
-                correct: 1,
-                explanation: "Class 7 Science Chapter 1: In desert conditions of extreme heat and dryness, leaves reduce into thorns to eliminate water loss through transpiration."
-              },
-              {
-                q: "What body shape assists aquatic fish in effortlessly slicing through water?",
-                options: [
-                  "Broad rectangular shape",
-                  "Spindle-shaped, streamlined body tapering at both ends",
-                  "Perfect spherical body",
-                  "Asymmetrical coiled body"
-                ],
-                correct: 1,
-                explanation: "The streamlined, spindle-shaped body minimizes fluid drag, enabling swift aquatic swimming."
-              }
-            ]
-          },
-          {
-            id: "sci-ch2",
-            number: 2,
-            title: "Plants: Structure and Function",
-            tagline: "Discover root architectures, vascular systems, and the 4 floral whorls.",
-            scenes: [
-              {
-                number: 1,
-                title: "Underground Architecture: Tap vs Fibrous Roots",
-                directorNote: "Cross-section camera panning downward into the rich soil showing roots anchoring trees.",
-                audioCue: "Earthy garden sound with bird chirps",
-                script: "Beneath every thriving plant lies an architectural marvel! Dicotyledonous plants like Hibiscus possess a strong central Tap Root with secondary branches. In contrast, monocots like Onion and Wheat feature Fibrous Roots—a dense cluster of hair-like threads sprouting directly from the base of the stem.",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#78350f" opacity="0.3"/>
-                    <rect x="0" y="0" width="600" height="120" fill="#15803d" opacity="0.4"/>
-                    <!-- Tap Root Side -->
-                    <g transform="translate(150, 110)">
-                      <path d="M0 0 L0 160" stroke="#78350f" stroke-width="8"/>
-                      <path d="M0 40 L-40 80" stroke="#78350f" stroke-width="4"/>
-                      <path d="M0 70 L40 110" stroke="#78350f" stroke-width="4"/>
-                      <text x="-40" y="180" fill="#f8fafc" font-size="14" font-weight="bold">Tap Root (Hibiscus)</text>
-                    </g>
-                    <!-- Fibrous Root Side -->
-                    <g transform="translate(420, 110)">
-                      <path d="M0 0 L-30 130" stroke="#92400e" stroke-width="3"/>
-                      <path d="M0 0 L-10 140" stroke="#92400e" stroke-width="3"/>
-                      <path d="M0 0 L15 135" stroke="#92400e" stroke-width="3"/>
-                      <path d="M0 0 L35 120" stroke="#92400e" stroke-width="3"/>
-                      <text x="-40" y="180" fill="#f8fafc" font-size="14" font-weight="bold">Fibrous Root (Onion)</text>
-                    </g>
-                  </svg>
-                `
-              }
-            ],
-            quiz: [
-              {
-                q: "Which of the following plants possesses a Tap Root system?",
-                options: ["Maize", "Wheat", "Hibiscus (Shoe flower)", "Grass"],
-                correct: 2,
-                explanation: "Dicot plants such as Hibiscus, Mustard, and Peepal possess tap root systems, whereas monocots feature fibrous roots."
-              }
-            ]
-          },
-          {
-            id: "sci-ch7",
-            number: 7,
-            title: "Motion, Force and Work",
-            tagline: "Calculate speed, understand linear vs oscillatory motion, and derive Joules.",
-            scenes: [
-              {
-                number: 1,
-                title: "Work and Energy in Action",
-                directorNote: "Dynamic laboratory demonstration of a mechanical trolley pulled along a calibrated scale.",
-                audioCue: "Whirring wheels and mechanical click",
-                script: "In everyday language, reading or thinking is called work. But in Science, Work has a very strict definition: Work is done ONLY when a force causes displacement of an object in the direction of the force! Formula: Work = Force × Displacement. Its SI unit is the Joule, and its CGS unit is the Erg.",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#1e1b4b"/>
-                    <!-- Track -->
-                    <line x1="50" y1="230" x2="550" y2="230" stroke="#64748b" stroke-width="6"/>
-                    <!-- Trolley -->
-                    <rect x="180" y="160" width="140" height="70" rx="8" fill="#6366f1"/>
-                    <circle cx="210" cy="230" r="14" fill="#38bdf8"/>
-                    <circle cx="290" cy="230" r="14" fill="#38bdf8"/>
-                    <!-- Force Arrow -->
-                    <line x1="330" y1="195" x2="450" y2="195" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
-                    <polygon points="450,185 470,195 450,205" fill="#f59e0b"/>
-                    <text x="350" y="180" fill="#fbbf24" font-weight="bold">Force (F)</text>
-                  </svg>
-                `
-              }
-            ],
-            quiz: [
-              {
-                q: "What is the relation between the SI unit (Joule) and the CGS unit (Erg) of work?",
-                options: ["1 Joule = 10⁵ Ergs", "1 Joule = 10⁷ Ergs", "1 Erg = 10⁷ Joules", "1 Joule = 1,000 Ergs"],
-                correct: 1,
-                explanation: "1 Joule = 1 Newton × 1 Metre = 10⁵ Dynes × 10² cm = 10⁷ Ergs."
-              }
-            ]
-          }
+          { num: 1, title: "The Living World: Adaptations and Classification", tag: "Cactus spines, fish gills, camel adaptations, and binomial classification.", sceneType: "nature",
+            script: "Look at the arid Thar Desert! Water is scarce, so the cactus turns its leaves into sharp thorns to prevent transpiration. In contrast, deep in the ocean, fish possess streamlined spindle bodies to slice through currents.",
+            audio: "Dry desert wind shifting to submarine currents", note: "Wide camera tracking from desert dunes to ocean coral reefs",
+            q: "Why are the leaves of desert plants modified into thorns?", opts: ["To catch insects", "To prevent water loss through transpiration", "To absorb sunlight at night", "To produce seeds"], ans: 1, exp: "In arid environments, reduced needle-like leaves eliminate water loss by transpiration." },
+          { num: 2, title: "Plants: Structure and Function", tag: "Roots, stems, leaves, venation, and 4 floral whorls (Calyx, Corolla, Androecium, Gynoecium).", sceneType: "botany",
+            script: "Beneath the soil, dicot plants like Hibiscus anchor deeply with tap roots, while monocots like Onion produce fibrous roots. Above ground, flowers display four whorls: sepals, petals, stamens, and carpels.",
+            audio: "Rustling leaves and morning birdsong", note: "Macro zoom on floral reproductive organs",
+            q: "Which plant possesses a central Tap Root system?", opts: ["Wheat", "Maize", "Hibiscus", "Grass"], ans: 2, exp: "Dicotyledons like Hibiscus have a deep tap root, whereas monocots feature fibrous roots." },
+          { num: 3, title: "Properties of Natural Resources", tag: "Atmospheric pressure, water anomalies, and soil fertility texture.", sceneType: "nature",
+            script: "Air has mass and exerts pressure. Water has anomalous expansion: as temperature falls from 4°C to 0°C, its density decreases and volume expands, allowing aquatic creatures to survive beneath frozen lakes!",
+            audio: "Gentle trickling water and whistling wind", note: "Laboratory beaker showing ice floating on water",
+            q: "At what temperature is the density of water maximum?", opts: ["0°C", "100°C", "4°C", "-4°C"], ans: 2, exp: "Water exhibits anomalous expansion and its maximum density occurs at exactly 4°C." },
+          { num: 4, title: "Nutrition in Living Organisms", tag: "Autotrophic photosynthesis, insectivorous plants, and symbiotic relations.", sceneType: "botany",
+            script: "Green plants convert sunlight, carbon dioxide, and water into glucose through chlorophyll. Meanwhile, insectivorous plants like Drosera grow in nitrogen-deficient soil and capture insects to meet their nutritional needs.",
+            audio: "Warm sunlight ambient hum", note: "Time-lapse of chloroplasts producing starch",
+            q: "Which element is deficient in the soil where insectivorous plants grow?", opts: ["Carbon", "Nitrogen", "Oxygen", "Iron"], ans: 1, exp: "Insectivorous plants trap insects to absorb nitrogen compounds lacking in their native soil." },
+          { num: 5, title: "Food Safety", tag: "Food spoilage, adulteration testing, and preservation techniques.", sceneType: "lab",
+            script: "Micro-organisms and enzymatic actions spoil food. Modern preservation uses pasteurization, refrigeration, and irradiation to inhibit bacterial growth and keep nutrients intact.",
+            audio: "Sterile laboratory timer chime", note: "Split screen showing spoiled vs pasteurized milk samples",
+            q: "Which chemical is commonly used to detect starch adulteration in milk?", opts: ["Iodine solution", "Salt water", "Vinegar", "Turmeric"], ans: 0, exp: "A drop of iodine turns starch blue, exposing artificial thickening adulteration in milk." },
+          { num: 6, title: "Measurement of Physical Quantities", tag: "Mass vs Weight, scalar and vector quantities, and SI standard units.", sceneType: "physics",
+            script: "Mass is the amount of matter in a body, a scalar quantity. Weight is the gravitational force pulling that mass toward the Earth's center—meaning your weight changes on the Moon, but your mass remains constant!",
+            audio: "Precision pendulum ticking", note: "Scale balancing a kilogram weight on Earth versus Moon",
+            q: "What is the SI unit of Force and Weight?", opts: ["Gram", "Newton", "Joule", "Erg"], ans: 1, exp: "Weight is a gravitational force, measured internationally in Newtons (N)." },
+          { num: 7, title: "Motion, Force and Work", tag: "Linear, oscillatory, and periodic motion; Work = Force × Displacement.", sceneType: "physics",
+            script: "Work is done only when force causes displacement in the direction of the force! Formula: Work = Force × Displacement. 1 Joule is equivalent to ten million Ergs (10⁷ Ergs).",
+            audio: "Mechanical pulley gears in motion", note: "Calibrated track pulling a laboratory cart with force vectors",
+            q: "What is 1 Joule in CGS units (Ergs)?", opts: ["10⁵ Ergs", "10⁷ Ergs", "1,000 Ergs", "10² Ergs"], ans: 1, exp: "1 Joule = 1 N × 1 m = 10⁵ dynes × 10² cm = 10⁷ Ergs." },
+          { num: 8, title: "Static Electricity", tag: "Electric charges, friction, lightning conductors, and gold leaf electroscopes.", sceneType: "physics",
+            script: "Friction transfers electrons between insulating objects. Lightning in rainclouds builds enormous electrical potential, which safely discharges into the ground through metal lightning conductors on high buildings.",
+            audio: "Crackling electrical spark and sudden thunderclap", note: "Lightning discharge diverted down copper earthing strip",
+            q: "Which charge is acquired by a glass rod when rubbed with silk cloth?", opts: ["Negative", "Positive", "Neutral", "Magnetic"], ans: 1, exp: "A glass rod loses electrons to silk, leaving the rod with an excess positive electric charge." },
+          { num: 9, title: "Heat", tag: "Conduction, convection, radiation, and thermos flask vacuum physics.", sceneType: "physics",
+            script: "Heat transfers in three ways: Conduction in solids, Convection in fluids, and Radiation through the vacuum of space. A Dewar thermos flask stops all three modes with dual silvered walls and a vacuum gap.",
+            audio: "Gently simmering water kettle", note: "Thermal infrared view of heat rays reflecting off silver glass",
+            q: "How does the Sun's heat reach Earth across empty outer space?", opts: ["Conduction", "Convection", "Radiation", "Circulation"], ans: 2, exp: "Radiation requires no material medium, allowing solar thermal energy to traverse space." },
+          { num: 10, title: "Disaster Management", tag: "First aid, earthquake precautions, flood mitigations, and lightning safety.", sceneType: "nature",
+            script: "Natural and man-made disasters require swift mitigation. During an earthquake, shelter under strong desks and stay away from power lines. First aid knowledge saves precious lives during golden hours.",
+            audio: "Emergency warning siren chime", note: "Animated safety drill demonstrating drop, cover, and hold",
+            q: "What should you do immediately if caught indoors during an earthquake tremor?", opts: ["Run to the terrace", "Stand under a glass window", "Take shelter under a sturdy table", "Use the elevator"], ans: 2, exp: "Taking shelter under a sturdy table protects against falling debris and structural plaster." },
+          { num: 11, title: "Cell Structure and Micro-organisms", tag: "Plant vs animal cells, nucleus, mitochondria, and helpful vs harmful microbes.", sceneType: "lab",
+            script: "Cells are the fundamental building blocks of all living matter. Plant cells feature rigid cell walls and green chloroplasts. Microbes like Lactobacillus turn milk to curd, while pathogens cause illnesses.",
+            audio: "Rhythmic cellular heartbeat hum", note: "High-power microscope focusing on glowing mitochondria and nucleus",
+            q: "Which organelle is famously known as the powerhouse of the cell?", opts: ["Ribosome", "Mitochondrion", "Vacuole", "Golgi body"], ans: 1, exp: "Mitochondria produce ATP through cellular respiration, powering the cell's metabolic activities." },
+          { num: 12, title: "The Muscular System and Digestive System", tag: "Voluntary vs involuntary muscles, digestive tract, and enzymes.", sceneType: "lab",
+            script: "Muscles work in pairs: biceps contract to flex the arm. In digestion, salivary amylase breaks starch in the mouth, stomach acid digests proteins, and the small intestine absorbs nutrients.",
+            audio: "Enzymatic chemical reaction hiss", note: "Animated cross-section showing nutrient absorption in digestive villi",
+            q: "Which enzyme present in human saliva breaks down starch into maltose?", opts: ["Pepsin", "Salivary Amylase (Ptyalin)", "Bile", "Lipase"], ans: 1, exp: "Salivary amylase (ptyalin) initiates starch digestion directly inside the mouth." },
+          { num: 13, title: "Changes – Physical and Chemical", tag: "Reversible physical changes vs irreversible chemical transformations.", sceneType: "lab",
+            script: "Melting ice is a physical change—the molecular composition stays H₂O and can freeze back. But rusting iron or burning wood produces entirely new substances, making it an irreversible chemical change.",
+            audio: "Ice cracking followed by glowing campfire crackle", note: "Beaker showing reversible melting versus iron nail rusting",
+            q: "Which of the following represents a permanent chemical change?", opts: ["Melting of wax", "Rusting of an iron nail", "Evaporation of water", "Dissolving salt in water"], ans: 1, exp: "Rusting creates iron oxide, a brand-new compound that cannot be reversed by physical means." },
+          { num: 14, title: "Elements, Compounds and Mixtures", tag: "Atoms, molecules, chemical symbols, formulas, and separation methods.", sceneType: "lab",
+            script: "An element contains only one kind of atom. A compound like water (H₂O) binds different elements in a fixed ratio. Mixtures like air or bhel retain the separate properties of their ingredients.",
+            audio: "Glass test tubes clinking in laboratory", note: "Molecular animation combining Hydrogen and Oxygen atoms into water",
+            q: "Water (H₂O) is scientifically classified as a:", opts: ["Element", "Compound", "Mixture", "Colloid"], ans: 1, exp: "Water is a chemical compound formed by two hydrogen atoms bonded to one oxygen atom in fixed ratio." },
+          { num: 15, title: "Materials We Use", tag: "Natural vs man-made materials, toothpastes, soaps, and detergents.", sceneType: "lab",
+            script: "From morning toothpaste containing calcium carbonate to cleanse teeth enamel, to synthetic detergents that emulsify oil in hard water—modern chemistry creates materials that improve everyday life.",
+            audio: "Foaming soap bubble pop sound", note: "Surfactant molecule binding to oil droplet and rinsing away",
+            q: "What is the primary abrasive ingredient in toothpaste that cleans plaque?", opts: ["Calcium carbonate", "Sugar", "Baking yeast", "Wax"], ans: 0, exp: "Calcium carbonate acts as a mild abrasive to remove food debris and polish teeth." },
+          { num: 16, title: "Natural Resources", tag: "Mineral ores, fossil fuels, ocean wealth, and conservation practices.", sceneType: "nature",
+            script: "The Earth's crust supplies precious mineral ores like bauxite and hematite. Oceans provide salt, fish, and natural gas. Because fossil fuels take millions of years to form, we must conserve them wisely.",
+            audio: "Deep subterranean seismic echo", note: "Drill rig exploring rock strata for mineral reserves",
+            q: "Bauxite is the principal mineral ore used for extracting which metal?", opts: ["Iron", "Aluminium", "Copper", "Gold"], ans: 1, exp: "Bauxite is refined into alumina and electrolyzed to produce pure aluminium." },
+          { num: 17, title: "Effects of Light", tag: "Scattering of light, shadows, umbra, penumbra, and eclipse mechanics.", sceneType: "physics",
+            script: "Why is the sky blue? Sunlight scatters through atmospheric gas molecules! When light strikes opaque bodies, it casts a dark central shadow (umbra) and a lighter surrounding shadow (penumbra).",
+            audio: "Gentle prism rainbow chime", note: "Ray optics diagram demonstrating umbra and penumbra shadows",
+            q: "Why does the clear daytime sky appear bright blue to our eyes?", opts: ["Refraction of clouds", "Scattering of blue wavelength light by atmospheric molecules", "Ocean water reflections", "Solar flares"], ans: 1, exp: "Nitrogen and oxygen molecules scatter shorter blue wavelengths across the entire sky." },
+          { num: 18, title: "Sound: Production of Sound", tag: "Vibrations, frequency, amplitude, vocal cords, and ultrasonic waves.", sceneType: "physics",
+            script: "All sound originates from vibrating bodies. When vocal cords vibrate, air particles oscillate in pressure waves. Higher frequency produces higher musical pitch, while larger amplitude creates louder volume.",
+            audio: "Clear musical tuning fork resonance", note: "Slow-motion animation of tuning fork vibrating air molecules",
+            q: "What is necessary for the generation and propagation of sound?", opts: ["A complete vacuum", "A vibrating body and a material medium", "Total darkness", "High temperature"], ans: 1, exp: "Sound is a mechanical wave requiring material particles to vibrate and travel." },
+          { num: 19, title: "Properties of a Magnetic Field", tag: "Magnetic poles, magnetic lines of force, Earth's magnetism, and compasses.", sceneType: "physics",
+            script: "Every magnet has two inseparable poles: North and South. Earth itself behaves like a gigantic magnet with its magnetic South near geographic North, guiding traveler compasses for centuries.",
+            audio: "Metallic compass needle spinning and clicking", note: "Iron filings aligning along invisible curved magnetic field lines",
+            q: "What happens when you cut a bar magnet exactly in half?", opts: ["North and South poles separate", "Each broken piece becomes a complete magnet with two poles", "It loses magnetism completely", "It converts into copper"], ans: 1, exp: "Magnetic monopoles do not exist; cutting a magnet creates two smaller complete two-pole magnets." },
+          { num: 20, title: "In the World of Stars", tag: "Galaxies, life cycle of stars, constellations, and solar system wonders.", sceneType: "cosmic",
+            script: "Stars are born inside cosmic gas clouds called nebulae. Driven by nuclear fusion, our Sun produces life-giving light. Over billions of years, giant stars evolve into supernovas and neutron stars.",
+            audio: "Deep cosmic choir and stellar pulsar beeps", note: "Panoramic telescope zoom through Andromeda spiral galaxy",
+            q: "What nuclear process powers the blazing heat and light of our Sun?", opts: ["Burning of coal", "Nuclear fusion of Hydrogen into Helium", "Chemical rust", "Volcanic magma"], ans: 1, exp: "Immense core pressure fuses hydrogen nuclei into helium, releasing massive energy." }
         ]
       },
       {
         id: "history",
         title: "History",
-        vernacular: "इतिहास",
+        vernacular: "इतिहास (सर्व १३ पाठ)",
         icon: "⚔️",
         themeColor: "#8b5cf6",
-        summary: "Historical sources, the rise of the Maratha Empire, and Swaraj administration.",
+        summary: "The full historical journey: From medieval sources to the Glorious Maratha Empire.",
         chapters: [
-          {
-            id: "hist-ch1",
-            number: 1,
-            title: "Sources of History",
-            tagline: "Explore material, written, and oral sources that bring past centuries alive.",
-            scenes: [
-              {
-                number: 1,
-                title: "Coins, Forts, and Bakhrs",
-                directorNote: "Scholarly study illuminated by lanterns, examining medieval copper coins and stone edicts.",
-                audioCue: "Rustling old parchment scrolls and ringing metallic coin chime",
-                script: "How do historians uncover events that occurred hundreds of years ago? Through historical sources! These are divided into three groups: Material sources (majestic forts, copper coins, and monuments), Written sources (royal firmans, travelogues, and Bakhrs), and Oral sources (folk songs, Powadas, and legends passed down across generations).",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#312e81" opacity="0.4"/>
-                    <!-- Castle silhouette -->
-                    <polygon points="80,260 80,140 110,140 110,120 130,120 130,140 160,140 160,260" fill="#475569"/>
-                    <!-- Ancient Scroll -->
-                    <rect x="230" y="120" width="140" height="150" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="3"/>
-                    <line x1="250" y1="150" x2="350" y2="150" stroke="#78350f" stroke-width="2"/>
-                    <line x1="250" y1="180" x2="350" y2="180" stroke="#78350f" stroke-width="2"/>
-                    <!-- Gold Coin -->
-                    <circle cx="460" cy="190" r="45" fill="#f59e0b" stroke="#fbbf24" stroke-width="4"/>
-                    <text x="445" y="200" fill="#78350f" font-weight="bold" font-size="28">₹</text>
-                  </svg>
-                `
-              }
-            ],
-            quiz: [
-              {
-                q: "Which among the following is an example of an Oral Source of history?",
-                options: ["Silver coins", "Powadas & Folk songs", "Stone inscriptions (Shilalekh)", "Fort of Raigad"],
-                correct: 1,
-                explanation: "Powadas, Owis, and folk tales handed down by word of mouth are classified as Oral sources of history."
-              }
-            ]
-          },
-          {
-            id: "hist-ch5",
-            number: 5,
-            title: "Foundation of the Swaraj",
-            tagline: "Relive the historic oath of Swaraj taken by young Shivaji Maharaj at Raireshwar.",
-            scenes: [
-              {
-                number: 1,
-                title: "The Sacred Oath at Raireshwar",
-                directorNote: "Candlelit sanctum inside Raireshwar temple high in the Sahyadris.",
-                audioCue: "Distant mountain thunder and ringing temple bells",
-                script: "Year 1645. High in the mist-veiled Sahyadri ranges at Raireshwar Temple, young Shivaji Maharaj gathers his loyal Mavala comrades. Inspired by his mother Jijabai's ideals of justice, Shivaji declares the historic oath: to establish 'Hindavi Swaraj'—a sovereign land free from tyranny and devoted to the welfare of all people.",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#1e1b4b"/>
-                    <polygon points="0,340 160,140 320,340" fill="#0f172a"/>
-                    <polygon points="200,340 380,90 560,340" fill="#1e293b"/>
-                    <g transform="translate(380, 80)">
-                      <line x1="0" y1="0" x2="0" y2="120" stroke="#e2e8f0" stroke-width="4"/>
-                      <polygon points="0,0 60,20 0,40" fill="#f97316"/>
-                      <polygon points="0,40 60,60 0,80" fill="#f97316"/>
-                    </g>
-                  </svg>
-                `
-              }
-            ],
-            quiz: [
-              {
-                q: "At which temple did Shivaji Maharaj take the oath to establish Hindavi Swaraj?",
-                options: ["Bhavani Temple at Tuljapur", "Raireshwar Temple", "Kailasa Temple at Ellora", "Tryambakeshwar"],
-                correct: 1,
-                explanation: "Shivaji Maharaj took the historic pledge to establish Hindavi Swaraj at Raireshwar temple in the Maval region in 1645."
-              }
-            ]
-          }
+          { num: 1, title: "Sources of History", tag: "Material, written, and oral historical sources.", sceneType: "history",
+            script: "Historians study three source types: Material (forts, coins, copper-plates), Written (bakhrs, firmans, travelogues), and Oral (powadas, folk songs, owis).", audio: "Parchment rustling and antique coins", note: "Scholar examining medieval manuscripts", q: "Powadas belong to which historical source category?", opts: ["Material", "Written", "Oral", "Digital"], ans: 2, exp: "Powadas are ballads handed down orally through generations of bards." },
+          { num: 2, title: "India before the Times of Shivaji Maharaj", tag: "Palas, Cholas, Yadavas, Delhi Sultanate, and Vijayanagara Empire.", sceneType: "history",
+            script: "Before Shivaji Maharaj, various dynasties ruled India: Krishnadevaraya flourished in Vijayanagara, while the Bahamani Sultanate split into five kingdoms across the Deccan.", audio: "Grand court trumpet fanfare", note: "Palace durbar map of 16th century Deccan", q: "Who was the renowned king of the Vijayanagara Empire?", opts: ["Krishnadevaraya", "Babar", "Akbar", "Qutub Shah"], ans: 0, exp: "King Krishnadevaraya ascended the throne of Vijayanagara in 1509 CE." },
+          { num: 3, title: "Religious Synthesis", tag: "Bhakti movement, Sant Dnyaneshwar, Sant Tukaram, and Sufi saints.", sceneType: "temple",
+            script: "The Bhakti movement swept India, preaching devotion beyond caste. In Maharashtra, Sant Dnyaneshwar, Sant Namdev, and Sant Tukaram inspired social unity and compassion.", audio: "Soft sitar and ektara devotional melody", note: "Pilgrims singing abhangas on Pandharpur wari", q: "Who composed the sacred commentary 'Dnyaneshwari' in Prakrit Marathi?", opts: ["Sant Tukaram", "Sant Dnyaneshwar", "Sant Eknath", "Sant Ramdas"], ans: 1, exp: "Sant Dnyaneshwar composed Bhavartha Deepika (Dnyaneshwari) to make spiritual wisdom accessible to all." },
+          { num: 4, title: "Maharashtra before the Times of Shivaji Maharaj", tag: "Pargana, Kasba, Mauja villages, and the famine of 1630 CE.", sceneType: "history",
+            script: "Medieval Maharashtra was organized into Mauja (villages), Kasba (town centers), and Pargana (districts). Saints sheltered people's spirits through devastating droughts.", audio: "Distant temple bells in a rural village", note: "Market square bustling in a medieval Kasba", q: "What was a primary rural village called in medieval administrative terms?", opts: ["Kasba", "Mauja", "Pargana", "Desh"], ans: 1, exp: "A small rural village was officially known as a Mauja in administrative records." },
+          { num: 5, title: "Foundation of the Swaraj", tag: "Oath at Raireshwar, capture of Torana, and brave Mavala comrades.", sceneType: "history",
+            script: "In 1645, young Shivaji Maharaj took the historic oath of Swaraj at Raireshwar temple. Supported by Tanaji Malusare, Baji Pasalkar, and Yesaji Kank, he captured Torana Fort!", audio: "Thunder and roaring conch shells", note: "Saffron flag fluttering on Torana fort ramparts", q: "Which was the first fort captured by Shivaji Maharaj to herald Swaraj?", opts: ["Raigad", "Torana", "Sinhagad", "Panhala"], ans: 1, exp: "Shivaji Maharaj captured Fort Torana, establishing the auspicious foundation of Swaraj." },
+          { num: 6, title: "Conflict with the Mughals", tag: "Shaista Khan raid, sack of Surat, and daring escape from Agra.", sceneType: "history",
+            script: "Shivaji Maharaj launched a midnight raid on Shaista Khan in Pune, extracted reparations from Surat, and masterminded the legendary escape from Aurangzeb's Agra detention inside fruit baskets!", audio: "Galloping horses and unsheathing swords", note: "Torchlit midnight raid on Lal Mahal palace", q: "Where did Shivaji Maharaj boldly outwit Aurangzeb to escape imprisonment?", opts: ["Delhi", "Agra", "Fatehpur Sikri", "Lahore"], ans: 1, exp: "Shivaji Maharaj and young Sambhaji Maharaj engineered a daring escape from Agra in 1666." },
+          { num: 7, title: "The Administration of the Swaraj", tag: "Ashta Pradhan Mandal, revenue system, and ocean navy.", sceneType: "history",
+            script: "Shivaji Maharaj appointed the Ashta Pradhan Mandal (council of eight ministers) for governance, protected ryots from corrupt tax collectors, and constructed a formidable marine navy.", audio: "Ocean waves slapping Sindhudurg sea fort walls", note: "Council of 8 ministers deliberating in Raigad durbar", q: "What was the Prime Minister called in Shivaji Maharaj's Ashta Pradhan council?", opts: ["Senapati", "Pantpradhan (Peshwa)", "Amatya", "Sachiv"], ans: 1, exp: "The Prime Minister or leader of the council was titled the Peshwa (Pantpradhan)." },
+          { num: 8, title: "An Ideal Ruler", tag: "Chhatrapati Shivaji Maharaj's humanitarian justice and secular vision.", sceneType: "history",
+            script: "Shivaji Maharaj was an ideal visionary ruler who treated enemy captives with respect, banned deforestation, safeguarded women's dignity, and stood by his farmers in times of crop failure.", audio: "Royal ceremonial drums and dhol tasha", note: "Golden throne of Raigad surrounded by common folk", q: "What was Shivaji Maharaj's strict command regarding the holy Quran found in military campaigns?", opts: ["Burn it", "Hand it over with respect to Muslim followers", "Store in library", "Ignore it"], ans: 1, exp: "He commanded troops to treat religious texts of all faiths with the utmost veneration." },
+          { num: 9, title: "The Maratha War of Independence", tag: "Chhatrapati Sambhaji, Rajaram Maharaj, and Maharani Tarabai's courage.", sceneType: "history",
+            script: "Following Shivaji Maharaj's passing, Aurangzeb invaded the Deccan with his grand imperial army. But Sambhaji Maharaj, Rajaram Maharaj, and heroic Maharani Tarabai led an unyielding 25-year war of resistance!", audio: "Roar of mountain cannons", note: "Maharani Tarabai riding horseback leading Maratha troops", q: "Who led the valiant Maratha struggle after the death of Rajaram Maharaj?", opts: ["Maharani Tarabai", "Soyarabai", "Jijabai", "Umadevi"], ans: 0, exp: "Maharani Tarabai demonstrated exceptional military and administrative leadership against Mughal forces." },
+          { num: 10, title: "The Expansion of the Maratha Power", tag: "Peshwa Balaji Vishwanath and Bajirao I's northern campaigns.", sceneType: "history",
+            script: "Under Shahu Maharaj, the energetic Peshwa Bajirao I expanded Maratha power across Malwa, Bundelkhand, and to the gates of Delhi, proclaiming the glory of Swaraj throughout India.", audio: "Thunder of galloping Maratha cavalry", note: "Maratha army marching victorious across the Narmada river", q: "Which brilliant military general served as Peshwa under Chhatrapati Shahu Maharaj?", opts: ["Bajirao I", "Nana Fadnavis", "Madhavrao", "Raghunathrao"], ans: 0, exp: "Peshwa Bajirao I was undefeated in battle and expanded Maratha influence far north." },
+          { num: 11, title: "Marathas – The Protectors of the Nation", tag: "Third Battle of Panipat and Sadashivrao Bhau's supreme sacrifice.", sceneType: "history",
+            script: "When Ahmad Shah Abdali invaded India, the Marathas marched thousands of miles north to protect the subcontinent. At Panipat in 1761, Maratha warriors fought with legendary bravery.", audio: "Solemn war drums echoing on plains", note: "Memorial stupa at the historical battlefield of Panipat", q: "Against which Afghan ruler did the Marathas fight the Third Battle of Panipat?", opts: ["Ahmad Shah Abdali", "Nadir Shah", "Babur", "Sher Shah"], ans: 0, exp: "The Marathas fought Ahmad Shah Abdali in 1761 to protect northern India from foreign conquest." },
+          { num: 12, title: "Progression of the Empire", tag: "Peshwa Madhavrao's recovery, Mahadji Shinde, and Ahilyabai Holkar.", sceneType: "history",
+            script: "Peshwa Madhavrao rebuilt the empire's prestige. In the north, Mahadji Shinde dominated politics in Delhi, while pious Punyashlok Ahilyabai Holkar rebuilt ghats and temples across India.", audio: "Gentle bells from temple ghats along Narmada", note: "Maheshwar Fort overlooking holy Narmada waters", q: "Which queen is celebrated for building ghats, temples, and wells across India?", opts: ["Rani Lakshmibai", "Punyashlok Ahilyabai Holkar", "Maharani Tarabai", "Rani Chennamma"], ans: 1, exp: "Ahilyabai Holkar of Indore ruled with righteousness and spent state wealth on public welfare." },
+          { num: 13, title: "Life of the People in Maharashtra", tag: "Social life, festivals, housing wadas, and traditional literature.", sceneType: "history",
+            script: "People lived in village communities celebrated with festivals like Gudhi Padwa, Pola, and Diwali. Wealthy citizens built grand wooden wadas with central courtyards, while folk arts like Bharud flourished.", audio: "Celebratory Lezim beats and festive flute", note: "Traditional Peshwa-era wooden wada courtyard", q: "Which festival celebrated by farmers expresses gratitude to bullocks?", opts: ["Diwali", "Bail Pola", "Holi", "Makar Sankranti"], ans: 1, exp: "Bail Pola is the festival dedicated to decorating and honoring farming bullocks." }
         ]
       },
       {
         id: "geography",
         title: "Geography",
-        vernacular: "भूगोल",
+        vernacular: "भूगोल (सर्व ११ पाठ)",
         icon: "🌍",
         themeColor: "#06b6d4",
-        summary: "Seasons, earth's axial tilt, tides, atmosphere, and climate zones.",
+        summary: "Earth's axial tilt, atmospheric pressure, tides, wind circulation, and human settlements.",
         chapters: [
-          {
-            id: "geo-ch1",
-            number: 1,
-            title: "How Seasons Occur (Part 1)",
-            tagline: "Discover why the Earth's tilted axis creates alternating cycles of day and night.",
-            scenes: [
-              {
-                number: 1,
-                title: "The Tilted Axis of Earth",
-                directorNote: "Cosmic view of space. The Sun shines in the center while Earth orbits tilted at 23.5 degrees.",
-                audioCue: "Deep, celestial ambient drone",
-                script: "Have you ever wondered why daylight is longer in summer and shorter in winter? It is because the Earth does not stand upright—it is tilted on its axis at 23.5 degrees! As it revolves around the Sun, the hemisphere inclined towards the Sun enjoys longer daylight and concentrated heat, giving rise to summer.",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#030712"/>
-                    <circle cx="140" cy="170" r="55" fill="#f59e0b"/>
-                    <circle cx="140" cy="170" r="75" fill="#fef08a" opacity="0.2"/>
-                    <ellipse cx="300" cy="170" rx="220" ry="80" fill="none" stroke="#334155" stroke-dasharray="6,6" stroke-width="2"/>
-                    <g transform="translate(420, 140)">
-                      <line x1="-15" y1="-50" x2="15" y2="100" stroke="#ef4444" stroke-width="3"/>
-                      <circle cx="0" cy="25" r="40" fill="#0284c7"/>
-                      <ellipse cx="-8" cy="20" rx="14" ry="10" fill="#22c55e"/>
-                    </g>
-                  </svg>
-                `
-              }
-            ],
-            quiz: [
-              {
-                q: "What is the primary factor responsible for the cycle of seasons on Earth?",
-                options: [
-                  "Changing distance to Mars",
-                  "Earth's tilted axis combined with its revolution around the Sun",
-                  "Fast rotation of the Moon",
-                  "Periodic oceanic evaporation"
-                ],
-                correct: 1,
-                explanation: "Class 7 Geography Chapter 1: The Earth's revolution around the Sun with its axis inclined at 23.5° causes the cycle of seasons."
-              }
-            ]
-          },
-          {
-            id: "geo-ch3",
-            number: 3,
-            title: "Tides (भरती आणि ओहोटी)",
-            tagline: "Understand gravitational pull of the Sun and Moon creating ocean tides.",
-            scenes: [
-              {
-                number: 1,
-                title: "Gravitational Pull of Moon and Sun",
-                directorNote: "Panoramic shoreline view showing sea water swelling at high tide and receding at low tide.",
-                audioCue: "Ocean waves crashing against the rocky coast",
-                script: "Twice every day, the water level along coastlines rises and falls with rhythmic regularity! This phenomenon is called Tides. Tides occur due to the gravitational pull of the Moon and the Sun, combined with the centrifugal force caused by Earth's rotation.",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#0f172a"/>
-                    <!-- Earth -->
-                    <circle cx="200" cy="170" r="60" fill="#0284c7"/>
-                    <!-- Water Bulge (High Tide) -->
-                    <ellipse cx="200" cy="170" rx="85" ry="62" fill="none" stroke="#38bdf8" stroke-width="6" opacity="0.6"/>
-                    <!-- Moon -->
-                    <circle cx="460" cy="170" r="28" fill="#e2e8f0"/>
-                    <text x="445" y="220" fill="#94a3b8" font-size="14">Moon</text>
-                  </svg>
-                `
-              }
-            ],
-            quiz: [
-              {
-                q: "On which days do the highest tides (Spring Tides / उधाणाची भरती) occur?",
-                options: ["First quarter day", "New Moon (Amavasya) and Full Moon (Poornima)", "Eighth day of each phase", "Every Tuesday"],
-                correct: 1,
-                explanation: "On New Moon and Full Moon days, the Sun, Moon, and Earth align in a straight line, combining forces to produce Spring Tides."
-              }
-            ]
-          }
+          { num: 1, title: "How Seasons Occur (Part 1)", tag: "Day and night cycles, shadow lengths, and apparent sun movement.", sceneType: "nature",
+            script: "Due to Earth's daily rotation from west to east, the sun appears to rise in the east. Shadow lengths change continuously throughout the day—longest at sunrise, shortest at noon.", audio: "Morning rooster crow and breezy winds", note: "Gnomon stick casting changing shadows from morning to noon", q: "At what time of day is a shadow cast by the sun shortest?", opts: ["Sunrise", "Noon (12 PM)", "Sunset", "Midnight"], ans: 1, exp: "At noon, the sun reaches its highest celestial altitude, making ground shadows shortest." },
+          { num: 2, title: "The Sun, the Moon and the Earth", tag: "Phases of moon, solar and lunar eclipses, and orbital inclinations.", sceneType: "cosmic",
+            script: "The Moon orbits Earth, while Earth orbits the Sun. When all three align in a straight line during Full Moon or New Moon, glorious Solar or Lunar eclipses occur in space.", audio: "Ethereal space choir and orbital hum", note: "Cosmic alignment showing Moon passing through Earth's shadow", q: "During which moon phase does a Lunar Eclipse occur?", opts: ["New Moon (Amavasya)", "Full Moon (Poornima)", "First Quarter", "Crescent Moon"], ans: 1, exp: "A lunar eclipse occurs only on a Full Moon night when Earth stands between Sun and Moon." },
+          { num: 3, title: "Tides (भरती आणि ओहोटी)", tag: "Gravitational pull of Sun and Moon, Spring vs Neap tides.", sceneType: "nature",
+            script: "Twice daily, coastal seas rhythmically rise and fall. When Sun and Moon align on Poornima and Amavasya, their combined gravitational pull triggers massive Spring Tides (उधाणाची भरती)!", audio: "Ocean surf crashing on rocks", note: "Animated shoreline rising at high tide and exposing sand at low tide", q: "Highest spring tides occur on which lunar days?", opts: ["First quarter", "Amavasya and Poornima", "Eighth day of lunar cycle", "Every Sunday"], ans: 1, exp: "On New Moon (Amavasya) and Full Moon (Poornima), combined gravitational forces cause peak spring tides." },
+          { num: 4, title: "Air Pressure", tag: "Atmospheric pressure belts, altitude effects, and barometers.", sceneType: "nature",
+            script: "Air has weight and exerts pressure downward. Heated air at the equator expands and rises, creating an equatorial low pressure belt, whereas cold dense air sinks at polar regions.", audio: "Wind gust whistling across mountain pass", note: "Barometer dial reading pressure drop with increasing altitude", q: "What happens to atmospheric pressure as you climb higher up a mountain?", opts: ["It increases", "It decreases", "It stays exactly equal", "It turns to zero"], ans: 1, exp: "Air density diminishes with height, causing atmospheric pressure to decrease." },
+          { num: 5, title: "Winds", tag: "Planetary winds, monsoon winds, and sea breeze vs land breeze.", sceneType: "nature",
+            script: "Air moves naturally from high-pressure zones toward low-pressure zones, creating Wind. During day, land heats faster than sea, drawing a cool Sea Breeze ashore to coastal regions.", audio: "Gentle coastal breeze rustling palm trees", note: "Daytime airflow moving from cool sea to warm land", q: "During the daytime along a coastline, wind blows from:", opts: ["Sea to Land (Sea Breeze)", "Land to Sea (Land Breeze)", "North to South only", "Clouds to Ocean"], ans: 0, exp: "Warm air over land rises, drawing cooler air inward from the sea as a Sea Breeze." },
+          { num: 6, title: "Natural Regions", tag: "Tundra, Taiga, Grasslands, Tropical Rainforests, and Deserts.", sceneType: "nature",
+            script: "Climate patterns divide our planet into diverse Natural Regions—from the icy moss-covered Tundra and dense Amazon Rainforests to the dry Sahara Desert and African Savannas.", audio: "Rainforest canopy sounds with exotic birds", note: "Globe rotating showcasing biomes from equator to Arctic", q: "Which natural region is characterized by hot climates, dense multi-story canopies, and daily rainfall?", opts: ["Tundra region", "Equatorial Rainforest region", "Hot Desert region", "Taiga forest"], ans: 1, exp: "Equatorial rainforests experience constant warmth, heavy rains, and dense biological diversity." },
+          { num: 7, title: "Soils", tag: "Soil formation, weathering of parent rock, and erosion control.", sceneType: "nature",
+            script: "Soil is a precious natural layer formed over thousands of years as rocks weather under heat, rain, and biotic action. Humus provides fertility, while terracing prevents soil erosion.", audio: "Raindrops falling into fertile soil", note: "Cross-section showing bedrock, subsoil, and rich dark topsoil", q: "What is the dark organic component of soil derived from decomposed matter?", opts: ["Sand", "Humus", "Gravel", "Clay"], ans: 1, exp: "Humus is formed from decomposed plant and animal residues, enriching soil fertility." },
+          { num: 8, title: "How Seasons Occur (Part 2)", tag: "Equinoxes, Solstices, perihelion, aphelion, and polar day/night.", sceneType: "cosmic",
+            script: "On March 21 and September 23 (Equinoxes), day and night are equal all over Earth! On June 21 (Summer Solstice), the Northern Hemisphere tilts toward the Sun, giving us our longest day.", audio: "Harmonic cosmic chimes", note: "Earth revolving on tilted axis reaching Summer Solstice position", q: "On which date does the Northern Hemisphere experience its longest daytime of the year?", opts: ["December 22", "June 21 (Summer Solstice)", "March 21", "January 14"], ans: 1, exp: "On June 21, the Tropic of Cancer faces the Sun directly, producing the longest day." },
+          { num: 9, title: "Agriculture", tag: "Subsistence, commercial, plantation farming, and modern drip irrigation.", sceneType: "nature",
+            script: "Agriculture feeds nations. Farmers employ diverse techniques: traditional intensive farming, plantation crops like tea and rubber, and modern water-saving drip irrigation in arid fields.", audio: "Tractor humming and sprinkler drops", note: "Lush green agricultural fields watered by precision drip pipes", q: "Which modern irrigation system delivers water drop-by-drop directly to plant roots?", opts: ["Flood irrigation", "Drip irrigation", "Canal flow", "Pond flooding"], ans: 1, exp: "Drip irrigation conserves water by channeling droplets right to the root zone." },
+          { num: 10, title: "Human Settlements", tag: "Linear, nucleated, and dispersed settlements near resources.", sceneType: "history",
+            script: "Humans establish homes where water, fertile soil, and roads converge. Coastal fishing hamlets form linear patterns, agricultural hubs create nucleated clusters, and hill farms disperse.", audio: "Bustling town market chatter and church/temple bells", note: "Aerial view of a nucleated village surrounding a central water lake", q: "Settlements developed along a highway or river bank usually take which shape?", opts: ["Circular", "Linear", "Dispersed", "Star-shaped"], ans: 1, exp: "Houses built in a line alongside roadways or rivers form Linear settlements." },
+          { num: 11, title: "Contour Maps and Landforms", tag: "Contour lines, elevation, steep slopes, and plateau interpretation.", sceneType: "nature",
+            script: "Contour lines connect points of equal elevation on topographic maps! When contour lines are packed closely together, the slope is steep; when spaced far apart, the slope is gentle.", audio: "Mountain wind across highland plateau", note: "Topographical 3D contour map transforming into a mountain peak", q: "What does it indicate on a contour map when contour lines are drawn very close to each other?", opts: ["Flat valley", "Steep slope or cliff", "Deep ocean trench", "Gentle plain"], ans: 1, exp: "Closely spaced contour lines signify a rapid rise in elevation, representing a steep slope." }
         ]
       },
       {
         id: "civics",
         title: "Civics",
-        vernacular: "नागरिकशास्त्र",
+        vernacular: "नागरिकशास्त्र (सर्व ६ पाठ)",
         icon: "⚖️",
         themeColor: "#eab308",
-        summary: "Introduction to the Indian Constitution, Fundamental Rights, and Duties.",
+        summary: "The Constitution of India, Fundamental Rights, and Duties of Citizens.",
         chapters: [
-          {
-            id: "civ-ch1",
-            number: 1,
-            title: "Introduction to Our Constitution",
-            tagline: "Learn how Dr. B.R. Ambedkar and the Constituent Assembly framed the nation's supreme law.",
-            scenes: [
-              {
-                number: 1,
-                title: "The Assembly of Ideals",
-                directorNote: "Grand Central Hall of Parliament with scholarly delegates framing the draft.",
-                audioCue: "Dignified orchestral fanfare",
-                script: "A constitution is the supreme law book according to which a nation is governed. For independent India, the Constituent Assembly worked for 2 years, 11 months, and 17 days. Dr. Babasaheb Ambedkar, Chairman of the Drafting Committee, shaped our foundational ideals: Justice, Liberty, Equality, and Fraternity.",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#1e293b"/>
-                    <rect x="60" y="30" width="24" height="260" fill="#475569" rx="4"/>
-                    <rect x="516" y="30" width="24" height="260" fill="#475569" rx="4"/>
-                    <g transform="translate(240, 80)">
-                      <rect x="0" y="0" width="120" height="160" rx="8" fill="#78350f" stroke="#fbbf24" stroke-width="4"/>
-                      <circle cx="60" cy="70" r="26" fill="none" stroke="#fbbf24" stroke-width="3"/>
-                      <line x1="20" y1="120" x2="100" y2="120" stroke="#fef3c7" stroke-width="3"/>
-                    </g>
-                  </svg>
-                `
-              }
-            ],
-            quiz: [
-              {
-                q: "Who was the Chairman of the Drafting Committee of the Indian Constitution?",
-                options: ["Dr. Rajendra Prasad", "Dr. Babasaheb Ambedkar", "Mahatma Gandhi", "Pandit Nehru"],
-                correct: 1,
-                explanation: "Dr. B. R. Ambedkar served as Chairman of the Drafting Committee and made vital contributions to drafting our Constitution."
-              }
-            ]
-          },
-          {
-            id: "civ-ch4",
-            number: 4,
-            title: "Fundamental Rights (Part 1)",
-            tagline: "Understand the Right to Equality, Right to Liberty, and Right against Exploitation.",
-            scenes: [
-              {
-                number: 1,
-                title: "Equality Before the Law",
-                directorNote: "Courthouse pillars balancing scales of justice equally for every Indian citizen.",
-                audioCue: "Solemn courtroom gavel sound",
-                script: "The Constitution guarantees Fundamental Rights to every citizen so they can live with dignity. The Right to Equality ensures the State cannot discriminate against any citizen on grounds of religion, race, caste, sex, or place of birth. Titles of royalty like Rao Bahadur are abolished to preserve equality!",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#0f172a"/>
-                    <!-- Balance Scale of Justice -->
-                    <line x1="300" y1="60" x2="300" y2="260" stroke="#cbd5e1" stroke-width="8"/>
-                    <line x1="180" y1="110" x2="420" y2="110" stroke="#cbd5e1" stroke-width="6"/>
-                    <!-- Left Pan -->
-                    <line x1="180" y1="110" x2="150" y2="180" stroke="#f59e0b" stroke-width="2"/>
-                    <line x1="180" y1="110" x2="210" y2="180" stroke="#f59e0b" stroke-width="2"/>
-                    <ellipse cx="180" cy="180" rx="35" ry="12" fill="#eab308"/>
-                    <!-- Right Pan -->
-                    <line x1="420" y1="110" x2="390" y2="180" stroke="#f59e0b" stroke-width="2"/>
-                    <line x1="420" y1="110" x2="450" y2="180" stroke="#f59e0b" stroke-width="2"/>
-                    <ellipse cx="420" cy="180" rx="35" ry="12" fill="#eab308"/>
-                  </svg>
-                `
-              }
-            ],
-            quiz: [
-              {
-                q: "What does the 'Right to Equality' in the Indian Constitution ensure?",
-                options: [
-                  "All citizens have the exact same income",
-                  "No citizen faces discrimination based on religion, race, caste, or sex",
-                  "Only government officials get free education",
-                  "Everyone must study the same subject"
-                ],
-                correct: 1,
-                explanation: "Right to Equality (Articles 14-18) prohibits discrimination and guarantees equal protection under the laws to everyone."
-              }
-            ]
-          }
+          { num: 1, title: "Introduction to our Constitution", tag: "Role of Constitution, Constituent Assembly, and Dr. B.R. Ambedkar.", sceneType: "civics",
+            script: "The Constitution is the fundamental law of the land. Dr. Babasaheb Ambedkar, Chairman of the Drafting Committee, guided the assembly over 2 years, 11 months, and 17 days to enact our supreme legal charter.", audio: "Dignified brass orchestral fanfare", note: "Parchment of the Constitution embossed in gold", q: "Who was the Chairman of the Drafting Committee of the Indian Constitution?", opts: ["Dr. Rajendra Prasad", "Dr. B. R. Ambedkar", "Sardar Patel", "Jawaharlal Nehru"], ans: 1, exp: "Dr. B. R. Ambedkar is reverently known as the chief architect of the Indian Constitution." },
+          { num: 2, title: "Preamble to the Constitution", tag: "Sovereign, Socialist, Secular, Democratic, Republic ideals.", sceneType: "civics",
+            script: "The Preamble is the guiding soul of our Constitution. It declares India to be a Sovereign, Socialist, Secular, Democratic Republic committed to Justice, Liberty, Equality, and Fraternity.", audio: "Solemn anthem chords", note: "Golden script of 'We, The People of India' shining on screen", q: "What does the term 'Secular State' mean in the Indian Constitution?", opts: ["One official religion only", "All religions are treated equally and with equal respect by the State", "Religious worship is prohibited", "Only ancient beliefs are allowed"], ans: 1, exp: "In a secular state, government maintains no state religion and respects all faiths equally." },
+          { num: 3, title: "Features of the Constitution", tag: "Federal system, division of powers, Union/State lists, and independent judiciary.", sceneType: "civics",
+            script: "Our Constitution balances power through a Federal System: Union government handles defense and currency, State governments govern police and health, backed by an impartial, independent Judiciary.", audio: "Supreme court gavel striking wooden soundblock", note: "Supreme Court pillars balancing scales of law", q: "Matters of national importance such as Defense and Foreign Affairs belong to which legislative list?", opts: ["State List", "Union List", "Concurrent List", "Local List"], ans: 1, exp: "The Union Government in New Delhi retains exclusive authority over the Union List." },
+          { num: 4, title: "Fundamental Rights – Part 1", tag: "Right to Equality, Right to Liberty, and abolition of untouchability.", sceneType: "civics",
+            script: "Fundamental Rights protect human dignity. The Right to Equality ensures no citizen faces discrimination based on caste, religion, or gender. Untouchability is abolished by law!", audio: "Uplifting choral harmony", note: "Children of all backgrounds sitting together in a modern classroom", q: "Which article of the Indian Constitution abolishes untouchability and makes its practice a punishable offense?", opts: ["Article 17", "Article 21", "Article 14", "Article 32"], ans: 0, exp: "Article 17 categorically abolishes 'Untouchability' and outlaws its practice." },
+          { num: 5, title: "Fundamental Rights – Part 2", tag: "Right against Exploitation, Freedom of Religion, and Constitutional Remedies.", sceneType: "civics",
+            script: "Children under 14 cannot be employed in hazardous factories under the Right against Exploitation. Citizens can approach High Courts or the Supreme Court through Writs if rights are infringed.", audio: "Resolute legal bell chime", note: "Scales of justice illuminating a court of law", q: "Under the Constitution, employment of children below what age in hazardous labor is strictly prohibited?", opts: ["18 years", "14 years", "16 years", "12 years"], ans: 1, exp: "Article 24 prohibits employment of children below the age of 14 in hazardous work." },
+          { num: 6, title: "Directive Principles of State Policy and Fundamental Duties", tag: "Welfare state goals, environmental protection, and national anthem respect.", sceneType: "civics",
+            script: "Directive Principles instruct governments to establish a welfare state with fair wages and public health. In return, citizens must perform Fundamental Duties—like protecting nature and respecting the National Flag.", audio: "Tricolor flag fluttering in wind with national anthem melody", note: "Indian National Flag waving proudly before the Ashoka Chakra", q: "Safeguarding public property and protecting forests and wildlife is categorized as a citizen's:", opts: ["Fundamental Right", "Fundamental Duty", "Optional suggestion", "Commercial contract"], ans: 1, exp: "Article 51A enumerates Fundamental Duties, including compassion for living creatures." }
         ]
       },
       {
         id: "marathi",
         title: "Marathi Balbharati",
-        vernacular: "मराठी सुलभभारती",
+        vernacular: "मराठी सुलभभारती (सर्व प्रमुख पाठ)",
         icon: "🚩",
         themeColor: "#f97316",
-        summary: "श्यामचे बंधुप्रेम, गोपाळचे शौर्य, आणि सुगम मराठी व्याकरण.",
+        summary: "Maharashtra's rich literature: Sane Guruji, Pandita Ramabai, courage, and poetry.",
         chapters: [
-          {
-            id: "mar-ch1",
-            number: 2,
-            title: "श्यामचे बंधुप्रेम (साने गुरुजी)",
-            tagline: "पावसाची पर्वा न करता लहान भावासाठी नवीन कोट घेऊन जाणाऱ्या श्यामची हृदयस्पर्शी गोष्ट.",
-            scenes: [
-              {
-                number: 1,
-                title: "मुसळधार पाऊस आणि श्यामचा निश्चय",
-                directorNote: "दाट आभाळ, वीजांचा कडकडाट आणि पावसात धावणारा लहान श्याम.",
-                audioCue: "मुसळधार पावसाचा आवाज आणि वाऱ्याची झुळूक",
-                script: "मे महिन्याच्या सुट्टीत श्याम दापोलीहून घरी आला होता. त्याचा लहान भाऊ नेहमी नव्या कोटासाठी हट्ट करत असे. श्यामने स्वतःचे खाऊचे पैसे साठवून आपल्या धाकट्या भावासाठी एक सुंदर निळा कोट शिवून घेतला. मुसळधार पाऊस सुरू असतानाही भावाच्या प्रेमापोटी श्याम अनवाणी धावत घराकडे निघाला!",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#1e3a8a" opacity="0.6"/>
-                    <line x1="80" y1="20" x2="40" y2="140" stroke="#93c5fd" stroke-width="2"/>
-                    <line x1="220" y1="10" x2="180" y2="160" stroke="#93c5fd" stroke-width="2"/>
-                    <path d="M0 240 Q150 200 300 240 T600 220 L600 340 L0 340 Z" fill="#1d4ed8"/>
-                    <g transform="translate(260, 150)">
-                      <circle cx="20" cy="20" r="14" fill="#fed7aa"/>
-                      <rect x="10" y="34" width="20" height="40" fill="#ea580c" rx="4"/>
-                      <rect x="24" y="44" width="22" height="18" fill="#3b82f6" stroke="#fbbf24" stroke-width="2" rx="3"/>
-                    </g>
-                  </svg>
-                `
-              }
-            ],
-            quiz: [
-              {
-                q: "श्यामने स्वतःच्या खाऊचे पैसे साठवून लहान भावासाठी काय शिवून घेतले होते?",
-                options: ["नवीन टोपी", "सुंदर कोट", "रंगीत दप्तर", "नवीन चप्पल"],
-                correct: 1,
-                explanation: "साने गुरुजींच्या 'श्यामचे बंधुप्रेम' या पाठात श्यामने खाऊचे पैसे वाचवून लहान भावासाठी प्रेमाने नवीन कोट शिवून घेतला होता."
-              }
-            ]
-          },
-          {
-            id: "mar-ch4",
-            number: 4,
-            title: "गोपाळचे शौर्य (लक्ष्मण मस्तूद)",
-            tagline: "कर्नाळा किल्ल्याच्या पायथ्याशी लागलेली रानवण विझवण्यासाठी शाळकरी गोपाळने दाखवलेले शौर्य.",
-            scenes: [
-              {
-                number: 1,
-                title: "रानवण आणि धावणारा गोपाळ",
-                directorNote: "डोंगर पायथ्याशी भडकलेला वणवा आणि पाण्याचा पाईप ओढणारा गोपाळ.",
-                audioCue: "आगीचा भडका आणि पाण्याचा जोराचा फवारा",
-                script: "शाळेची सहल कर्नाळा गडावरून परत येत असताना जंगलात अचानक 'वणवा' लागल्याचे दिसले. झाडे आणि गुरे आगीत सापडली होती. इतर सर्व घाबरले, पण गोपाळने लगेच गाडीतून उडी घेतली आणि नदीवरून जाणारा पाण्याचा पाईप ओढून तो आगीवर धरला! गोपाळच्या धैर्यामुळे संपूर्ण रानवण विझला.",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#451a03"/>
-                    <!-- Forest Fire -->
-                    <polygon points="120,280 160,180 200,280" fill="#ef4444"/>
-                    <polygon points="150,280 180,160 210,280" fill="#f59e0b"/>
-                    <!-- Water Stream -->
-                    <path d="M420 220 Q300 160 200 200" stroke="#38bdf8" stroke-width="8" fill="none"/>
-                  </svg>
-                `
-              }
-            ],
-            quiz: [
-              {
-                q: "गोपाळने कर्नाळा गडाच्या पायथ्याशी लागलेली कोणती आग शमवण्यासाठी धाडस दाखवले?",
-                options: ["शेकोटीची आग", "जंगलातील रानवण (वणवा)", "घरातील आग", "कारखान्याची आग"],
-                correct: 1,
-                explanation: "गोपाळने सहलीवरून परतताना जंगलात लागलेला भयानक वणवा विझवण्यासाठी असीम धैर्य दाखवले होते."
-              }
-            ]
-          }
+          { num: 1, title: "जय जय महाराष्ट्र माझा (गीत - राजा बढे)", tag: "महाराष्ट्राची महती, सह्याद्रीचे तेज, आणि शिवरायांचा वारसा सांगणारे राष्ट्रगीत.", sceneType: "history",
+            script: "कवी राजा बढे गातात: 'जय जय महाराष्ट्र माझा, गर्जा महाराष्ट्र माझा!' सह्याद्रीचा सिंह गर्जतो आणि शिवशंभूंच्या पराक्रमाची गाथा कृष्णा-गोदावरीच्या पावन तीरावर दुमदुमते!", audio: "Dhol tasha and tutari festive call", note: "सह्याद्रीच्या कड्यावर फडफडणारा भगवा झेंडा आणि नद्यांचे विहंगम दृश्य", q: "'जय जय महाराष्ट्र माझा' हे महाराष्ट्र राज्याचे अधिकृत गीत कोणी लिहिले आहे?", opts: ["साने गुरुजी", "राजा बढे", "कुसुमाग्रज", "विंदा करंदीकर"], ans: 1, exp: "हे स्फूर्तिदायक गीत प्रसिद्ध कवी राजा बढे यांनी रचले आहे." },
+          { num: 2, title: "श्यामचे बंधुप्रेम (साने गुरुजी)", tag: "लहान भावासाठी नवीन कोट घेऊन पावसात अनवाणी धावणाऱ्या श्यामची हृदयस्पर्शी गोष्ट.", sceneType: "nature",
+            script: "मे महिन्याच्या सुट्टीत श्यामने स्वतःच्या खाऊचे पैसे साठवून धाकट्या भावासाठी एक सुंदर निळा कोट शिवून घेतला. मुसळधार पाऊस, नदी-नाल्यांचे पूर ओलांडून श्याम प्रेमाने घरी पोहोचला!", audio: "मुसळधार पावसाचा आवाज आणि वाऱ्याची झुळूक", note: "पावसात भिजत गाठोडे छातीशी धरून धावणारा लहान श्याम", q: "श्यामने स्वतःचे कोणते पैसे साठवून लहान भावासाठी नवीन कोट शिवून घेतला?", opts: ["पुस्तकांचे पैसे", "खाऊचे पैसे", "फीचे पैसे", "बसचे पैसे"], ans: 1, exp: "श्यामने दापोलीस शिकत असताना खाऊचे पैसे वाचवून भावावरचे निरपेक्ष प्रेम व्यक्त केले." },
+          { num: 3, title: "प्रभात (कविता - किशोर पाठक)", tag: "विज्ञानाच्या युगात ज्ञानाची नवी पहाट, कलागुणांची समृद्धी आणि नव्या आशा.", sceneType: "nature",
+            script: "विज्ञानाच्या नव्या युगात ज्ञानाची पहाट उगवली आहे. जातिभेदाच्या भिंती तोडून, ज्ञानाच्या प्रकाशात कलागुणांचा विकास करत आपल्याला देशाचे उज्ज्वल भविष्य घडवायचे आहे!", audio: "Morning flute melody and sweet chirping birds", note: "सूर्योदयाच्या किरणांमध्ये खुलणारी सुंदर नवी शाळा आणि फुलझाडे", q: "कवी किशोर पाठक यांच्या मते विज्ञानाच्या युगात कोणाची नवी पहाट उगवली आहे?", opts: ["युद्धाची", "ज्ञानाची आणि नव्या विचारांची", "अंधाराची", "आळसाची"], ans: 1, exp: "प्रभात कवितेत विज्ञानाच्या प्रकाशाने ज्ञानाची नवी सुंदर पहाट उगवल्याचे वर्णन आहे." },
+          { num: 4, title: "गोपाळचे शौर्य (लक्ष्मण मस्तूद)", tag: "कर्नाळा गडाच्या पायथ्याशी लागलेली रानवण विझवण्यासाठी शाळकरी गोपाळने दाखवलेले असीम धैर्य.", sceneType: "nature",
+            script: "शाळेची सहल कर्नाळा गडावरून परतताना जंगलात अचानक 'वणवा' पेटलेला दिसला! गोपाळने क्षणाचाही विलंब न करता गाडीतून उडी मारली आणि पाण्याचा पाईप ओढून धैर्याने आग विझवली.", audio: "आगीचा भडका आणि पाण्याचा जोराचा फवारा", note: "डोंगर पायथ्याशी लागलेली आग विझवण्यासाठी धडपडणारा गोपाळ", q: "गोपाळने कर्नाळा गडाच्या पायथ्याशी लागलेली कोणती आग विझवण्यासाठी शौर्य दाखवले?", opts: ["शेकोटीची", "जंगलातील रानवण (वणवा)", "कारखान्याची", "घराची"], ans: 1, exp: "गोपाळने प्रसंगावधान राखून जंगलातील पशुपक्षी वाचवण्यासाठी वणवा विझवला." },
+          { num: 5, title: "दादास पत्र", tag: "माळढोक पक्षी अभयारण्याची सहल आणि निसर्ग संवर्धनाचे महत्त्व सांगणारे बहिणीचे पत्र.", sceneType: "nature",
+            script: "आयेशाने नान्नज येथील माळढोक अभयारण्याची सहल केली. नामशेष होत चाललेला देखणा माळढोक पक्षी आणि निसर्गाचे सौंदर्य तिने आपल्या मोठ्या भावाला सुंदर पत्रातून कळवले.", audio: "पक्ष्यांची मंजूळ किलबिल", note: "गवताळ माळरानावर डौलाने चालणारा दुर्मीळ माळढोक पक्षी", q: "सोलापूर जिल्ह्यातील नान्नज येथील अभयारण्य कोणत्या दुर्मीळ पक्ष्यासाठी प्रसिद्ध आहे?", opts: ["मोर", "माळढोक पक्षी", "गरुड", "हंस"], ans: 1, exp: "नान्नज येथील अभयारण्य नामशेष होणाऱ्या देखण्या माळढोक पक्ष्यासाठी संरक्षित आहे." },
+          { num: 10, title: "पंडिता रमाबाई (अनुपमा उजगरे)", tag: "स्त्री शिक्षणासाठी आणि निराधार महिलांच्या उद्धारासाठी आयुष्य वेचणाऱ्या थोर विदुषी.", sceneType: "history",
+            script: "पंडिता रमाबाईंनी तत्कालीन समाजाच्या विरोधाला न जुमानता महिलांच्या स्वावलंबनासाठी 'शारदा सदन' व 'मुक्ती सदन' स्थापन केले. त्यांनी स्त्रियांना छपाई आणि शेतीचे शिक्षण देऊन आत्मनिर्भर बनवले.", audio: "छपाई यंत्राचा लयबद्ध आवाज आणि शाळेची घंटा", note: "मुक्ती सदनातील विद्यार्थिनींना शिकवणाऱ्या तेजस्वी पंडिता रमाबाई", q: "पंडिता रमाबाईंनी निराधार स्त्रियांच्या शिक्षणासाठी व स्वावलंबनासाठी कोणती संस्था सुरू केली?", opts: ["शारदा सदन / मुक्ती सदन", "सत्यशोधक समाज", "आर्य समाज", "प्रार्थना समाज"], ans: 0, exp: "पंडिता रमाबाईंनी स्त्रियांना स्वाभिमानी बनवण्यासाठी शारदा सदन व मुक्ती सदनची स्थापना केली." },
+          { num: 12, title: "सलाम - नमस्ते! (सुधा मूर्ती)", tag: "शेख महंमद व जुबेदा यांच्या प्रामाणिकपणाची आणि माणुसकीची हृदयस्पर्शी कथा.", sceneType: "history",
+            script: "सुधा मूर्ती यांच्या 'सलाम - नमस्ते' पाठात कॅन्सरने ग्रस्त बहिणीच्या उपचारासाठी उरलेले पैसे परत करणाऱ्या लहान तबसुमचा प्रामाणिकपणा पाहून दातृत्वालाही अश्रू अनावर होतात!", audio: "मंद, भावस्पर्शी वायोलीनचे सूर", note: "हॉस्पिटलच्या बाकड्यावर प्रामाणिकपणे पैसे परत करणारी निष्पाप लहान मुलगी", q: "'सलाम - नमस्ते' या पाठाच्या प्रसिद्ध लेखिका कोण आहेत?", opts: ["शांता शेळके", "सुधा मूर्ती", "अनुराधा पोतदार", "ताराबाई शिंदे"], ans: 1, exp: "प्रसिद्ध समाजसेविका व लेखिका सुधा मूर्ती यांनी ही हृदयस्पर्शी सत्यकथा लिहिली आहे." }
         ]
       },
       {
         id: "hindi",
         title: "Hindi Sulabhbharati",
-        vernacular: "हिंदी सुलभभारती",
+        vernacular: "हिंदी सुलभभारती (इकाई १ व २ संपूर्ण)",
         icon: "🪶",
         themeColor: "#ec4899",
-        summary: "फूल और काँटा, दादी माँ का परिवार, और प्रेरणादायी बाल कहानियाँ।",
+        summary: "Inspirational Hindi poems, morals, APJ Abdul Kalam, and unity tales.",
         chapters: [
-          {
-            id: "hin-ch2",
-            number: 2,
-            title: "फूल और काँटा (अयोध्यासिंह उपाध्याय 'हरिऔध')",
-            tagline: "एक ही पौधे पर रहकर फूल और काँटा अपने कर्मों से कैसे भिन्न बनते हैं?",
-            scenes: [
-              {
-                number: 1,
-                title: "एक ही पौधे का संसार",
-                directorNote: "हरे-भरे बगीचे में गुलाब के पौधे पर खिले फूल और नुकीले काँटे का क्लोज-अप।",
-                audioCue: "मधुमक्खियों की भिनभिनाहट और मंद हवा",
-                script: "कवि कहते हैं: फूल और काँटा दोनों एक ही पौधे पर जन्म लेते हैं। एक ही चाँदनी दोनों पर समान रूप से चमकती है। लेकिन काँटा दूसरों को चुभकर पीड़ा देता है, जबकि फूल अपनी सुगंध से तितलियों और भौरों को गले लगाता है। बड़प्पन कुल से नहीं, कर्म से मिलता है!",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#831843" opacity="0.3"/>
-                    <circle cx="480" cy="70" r="50" fill="#fef08a" opacity="0.4"/>
-                    <path d="M300 340 Q310 200 280 100" stroke="#15803d" stroke-width="12" fill="none"/>
-                    <polygon points="296,240 260,225 296,230" fill="#14532d"/>
-                    <g transform="translate(280, 90)">
-                      <circle cx="0" cy="0" r="34" fill="#f43f5e"/>
-                      <circle cx="0" cy="0" r="14" fill="#fef08a"/>
-                    </g>
-                  </svg>
-                `
-              }
-            ],
-            quiz: [
-              {
-                q: "कविता 'फूल और काँटा' के अनुसार मनुष्य का बड़प्पन किससे आंका जाता है?",
-                options: ["उच्च कुल में जन्म लेने से", "उसके अच्छे और परोपकारी कर्मों से", "कीमती वस्त्र पहनने से", "धन-दौलत से"],
-                correct: 1,
-                explanation: "कवि हरिऔध जी समझाते हैं कि इंसान केवल ऊँचे कुल से नहीं, बल्कि अपने भले स्वभाव और परोपकारी कर्मों से बड़ा बनता है।"
-              }
-            ]
-          },
-          {
-            id: "hin-ch3",
-            number: 3,
-            title: "दादी माँ का परिवार (रमाकांत कांत)",
-            tagline: "नीलू चिड़िया और टीनू-मीनू के माध्यम से एकता और संगठन की शक्ति की सीख।",
-            scenes: [
-              {
-                number: 1,
-                title: "एकता में ही बल है",
-                directorNote: "दादी माँ का छोटा घर, चिड़ियों का घोंसला और जाल में फंसी चिड़ियों की संयुक्त उड़ान।",
-                audioCue: "चिड़ियों की चहचहाहट और पंखों की फड़फड़ाहट",
-                script: "दादी माँ के परिवार में नीलू चिड़िया और चुस्की चुहिया अपने बच्चों के साथ प्रेम से रहती थीं। एक दिन जब चिड़ियाँ बहेलिए के जाल में फँस गईं, तो दादी माँ ने एकता का मंत्र सिखाया। सभी चिड़ियों ने एक साथ ज़ोर लगाकर जाल समेत उड़ान भरी और दादी के पास सुरक्षित लौट आईं!",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#0f172a"/>
-                    <circle cx="120" cy="90" r="40" fill="#bae6fd" opacity="0.4"/>
-                    <!-- Flying Net -->
-                    <polygon points="240,140 380,120 360,240 220,220" stroke="#f59e0b" stroke-width="3" stroke-dasharray="8,8" fill="none"/>
-                    <circle cx="280" cy="160" r="12" fill="#38bdf8"/>
-                    <circle cx="330" cy="170" r="12" fill="#38bdf8"/>
-                  </svg>
-                `
-              }
-            ],
-            quiz: [
-              {
-                q: "बहेलिए के जाल में फँसने पर चिड़ियों ने अपनी जान कैसे बचाई?",
-                options: [
-                  "जाल में बैठकर रोने लगीं",
-                  "एकजुट होकर पूरे जाल को लेकर एक साथ उड़ गईं",
-                  "पेड़ पर बैठ गईं",
-                  "बहेलिए से विनती की"
-                ],
-                correct: 1,
-                explanation: "पाठ 'दादी माँ का परिवार' सिखाता है कि एकता में अटूट शक्ति होती है; सबने मिलकर जाल समेत उड़ान भरी।"
-              }
-            ]
-          }
+          { num: 1, title: "वाचन मेला", tag: "पुस्तकों का महत्व, ग्रंथ डिंडी, और पुस्तकों से ज्ञानार्जन की प्रेरणा।", sceneType: "history",
+            script: "पुस्तकों का संसार अद्भुत है! वाचन मेले में विभिन्न ज्ञानवर्धक पुस्तकें सजी हैं। संदेश गूंज रहा है: 'पुस्तकें हैं ज्ञान की खान, इनसे करें हम अपना ज्ञानवर्धन!'", audio: "मेले का कोलाहल और विद्यार्थियों का हर्षोल्लास", note: "रंग-बिरंगी पुस्तकों से सजा सुंदर वाचन मेला", q: "वाचन मेले में सजी पुस्तकों से हमें मुख्य रूप से क्या प्राप्त होता है?", opts: ["मिठाई", "अथाह ज्ञान और सद्विचार", "खिलौने", "कपड़े"], ans: 1, exp: "पुस्तकें मनुष्य की सच्ची मित्र हैं जो हमें ज्ञान और विवेक प्रदान करती हैं।" },
+          { num: 2, title: "फूल और काँटा (अयोध्यासिंह उपाध्याय 'हरिऔध')", tag: "एक ही पौधे पर रहकर कर्मों के आधार पर बड़प्पन साबित करने की सीख।", sceneType: "botany",
+            script: "कवि हरिऔध जी समझाते हैं: फूल और काँटा एक ही पौधे पर पलते हैं, एक ही हवा और चाँदनी पाते हैं। लेकिन काँटा उँगली चीरता है, जबकि फूल अपनी महक से सबको सुख देता है। बड़प्पन कुल से नहीं, कर्म से होता है!", audio: "मधुमक्खियों का गुंजन और मंद पवन", note: "गुलाब के तने पर खिला सुंदर फूल और नीचे नुकीला काँटा", q: "कविता के अनुसार मनुष्य की महानता और बड़प्पन किस बात से तय होता है?", opts: ["ऊँचे कुल में जन्म लेने से", "उसके अच्छे और परोपकारी कर्मों से", "सुंदर वस्त्रों से", "धन-दौलत से"], ans: 1, exp: "कवि कहते हैं कि केवल कर्म ही व्यक्ति को समाज में आदर और बड़प्पन दिलाते हैं।" },
+          { num: 3, title: "दादी माँ का परिवार (रमाकांत कांत)", tag: "नीलू चिड़िया और टीनू-मीनू के माध्यम से एकता और संगठन की शक्ति।", sceneType: "nature",
+            script: "दादी माँ के परिवार में नीलू चिड़िया और उसके बच्चे प्रेम से रहते थे। जब चिड़ियाँ शिकारी के जाल में फँस गईं, तो सबने एक साथ ज़ोर लगाकर जाल समेत उड़ान भर ली! 'एकता में ही अटूट शक्ति है।'", audio: "चिड़ियों की चहचहाहट और फड़फड़ाते पंख", note: "जाल को पंजों में दबाकर एक साथ आकाश में उड़ती चिड़ियाँ", q: "शिकारी के जाल में फँसने पर चिड़ियों ने अपनी जान कैसे बचाई?", opts: ["रोकर", "एकजुट होकर जाल समेत एक साथ उड़कर", "शिकारी से विनती कर", "पेड़ पर छिपकर"], ans: 1, exp: "दादी माँ की सीख पर अमल करते हुए सभी चिड़ियों ने एकता के बल पर जाल उड़ा लिया।" },
+          { num: 4, title: "देहात और शहर (अभिषेक पांडेय)", tag: "गाँव की हरियाली बनाम शहर की भागदौड़ और प्रदूषण की तुलनात्मक चिट्ठी।", sceneType: "nature",
+            script: "गाँव और शहर आपस में पत्र लिखकर अपना सुख-दुख बाँटते हैं। शहर कहता है कि यहाँ चकाचौंध है पर भीड़ और प्रदूषण है; गाँव कहता है कि यहाँ खुली हवा और शांति है पर रोज़गार की कमी है।", audio: "गाँव की बाँसुरी और शहर के वाहनों का हॉर्न", note: "एक तरफ लहलहाते खेत और दूसरी तरफ गगनचुंबी इमारतों का दृश्य", q: "गाँव में शहर की तुलना में कौन सी अमूल्य प्राकृतिक संपदा अधिक पाई जाती है?", opts: ["भारी ट्रैफिक", "प्रदूषणमुक्त ताज़ा हवा और हरियाली", "मेट्रो ट्रेन", "शॉपिंग मॉल"], ans: 1, exp: "गाँव में शांति, शुद्ध वातावरण और प्राकृतिक हरियाली भरपूर मात्रा में होती है।" },
+          { num: 6, title: "'पृथ्वी' से 'अग्नि' तक (डॉ. ए. पी. जे. अब्दुल कलाम)", tag: "भारत के मिसाइल कार्यक्रम की ऐतिहासिक सफलता और वैज्ञानिकों का अथक परिश्रम।", sceneType: "lab",
+            script: "भारत के मिसाइल मैन डॉ. अब्दुल कलाम के नेतृत्व में वैज्ञानिकों ने चक्रवाती तूफानों और तकनीकी असफलताओं के बावजूद दिन-रात एक करके स्वदेशी 'अग्नि' मिसाइल का सफल परीक्षण किया!", audio: "उल्टी गिनती (काउंटडाउन) और रॉकेट गर्जना", note: "श्रीहरिकोटा के लॉन्च पैड से आग उगलती अग्नि मिसाइल का गगनचुंबी प्रक्षेपण", q: "'अग्नि' मिसाइल के सफल प्रक्षेपण का नेतृत्व किस महान वैज्ञानिक ने किया था?", opts: ["डॉ. होमी भाभा", "डॉ. ए. पी. जे. अब्दुल कलाम", "डॉ. सी. वी. रमन", "विक्रम साराभाई"], ans: 1, exp: "डॉ. कलाम ने कठिन चुनौतियों का सामना कर अग्नि मिसाइल का सफल प्रक्षेपण कराया।" },
+          { num: 11, title: "बसंती हवा (केदारनाथ अग्रवाल)", tag: "मस्तमौला, बेफिक्र बसंती बयार की अल्हड़ सैर और आनंद।", sceneType: "nature",
+            script: "कवि कहते हैं: 'हवा हूँ, हवा मैं बसंती हवा हूँ! सुनो बात मेरी, अनोखी हवा हूँ!' खेत-खलिहान, आम के पेड़ और महुए की डालियों को झकझोरती हुई बसंती हवा सबको आनंदित करती दौड़ती है।", audio: "सरसराहट भरी तेज ठंडी हवा और पत्ते हिलने की ध्वनि", note: "सरसों के पीले फूलों को सहलाती हुई लहराती बसंती हवा", q: "कविता में बसंती हवा का स्वभाव कैसा बताया गया है?", opts: ["शांत और उदास", "मस्तमौला, निडर और बेफिक्र", "क्रोधी", "थकी हुई"], ans: 1, exp: "बसंती हवा अत्यंत अल्हड़, निडर, चंचल और मस्तमौला स्वभाव की है।" }
         ]
       },
       {
         id: "english",
         title: "English Balbharati",
-        vernacular: "इंग्रजी बालभारती",
+        vernacular: "इंग्रजी बालभारती (All 4 Units)",
         icon: "📖",
         themeColor: "#3b82f6",
-        summary: "Odd One In, Past Present Future, From a Railway Carriage, and Grammar.",
+        summary: "Full syllabus: Poems, stories of empathy, space souvenirs, and detective classics.",
         chapters: [
-          {
-            id: "eng-ch1",
-            number: 1,
-            title: "Odd One In",
-            tagline: "A poignant story about empathy, understanding, and friendship in school.",
-            scenes: [
-              {
-                number: 1,
-                title: "Malti's First Day in the Big City School",
-                directorNote: "A bustling, cheerful modern school classroom. Students laughing and chattering.",
-                audioCue: "School corridor bell ringing and student chattering",
-                script: "Malti, a gifted girl from a rural school, walks into a modern city classroom with oil in her hair and a shy bindi. Some girls whisper and giggle at her appearance. But when the teacher poses challenging questions, Malti's sharp intellect and pure heart shine brighter than all prejudice!",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#1e293b"/>
-                    <rect x="140" y="30" width="320" height="150" rx="6" fill="#064e3b" stroke="#78350f" stroke-width="10"/>
-                    <text x="180" y="80" fill="#a7f3d0" font-family="Nunito" font-size="20" font-weight="700">English Class 7</text>
-                    <text x="180" y="120" fill="#fef08a" font-family="Nunito" font-size="16">Be Kind & Welcoming ✨</text>
-                  </svg>
-                `
-              }
-            ],
-            quiz: [
-              {
-                q: "What is the central moral lesson highlighted in the story 'Odd One In'?",
-                options: [
-                  "Always wear branded shoes to school",
-                  "Never judge a person solely by their external appearance or background",
-                  "Only study mathematics and science",
-                  "Avoid speaking with new classmates"
-                ],
-                correct: 1,
-                explanation: "The chapter teaches students to respect diversity, overcome superficial biases, and welcome everyone with an open heart."
-              }
-            ]
-          },
-          {
-            id: "eng-ch2",
-            number: 2,
-            title: "From a Railway Carriage (R. L. Stevenson)",
-            tagline: "Experience the rhythm and speeding wonders seen through a steam train window.",
-            scenes: [
-              {
-                number: 1,
-                title: "Faster than Fairies, Faster than Witches",
-                directorNote: "Locomotive rushing through meadows, stations whistling by in the blink of an eye.",
-                audioCue: "Chugging steam train wheels on track with distant whistle",
-                script: "Robert Louis Stevenson captures the exhilaration of a rushing steam train! Bridges and houses, hedges and ditches fly past like troops charging into battle. Each glance offers a glimpse of a meadow, a cart, or a mill—here for a flash, and gone forever!",
-                svgIllustration: `
-                  <svg viewBox="0 0 600 340" width="100%" height="100%">
-                    <rect width="600" height="340" fill="#0284c7" opacity="0.3"/>
-                    <polygon points="0,340 180,180 340,340" fill="#15803d"/>
-                    <polygon points="260,340 420,160 580,340" fill="#166534"/>
-                    <!-- Speeding Train -->
-                    <rect x="160" y="220" width="280" height="70" rx="10" fill="#1e293b"/>
-                    <circle cx="200" cy="290" r="18" fill="#e2e8f0"/>
-                    <circle cx="280" cy="290" r="18" fill="#e2e8f0"/>
-                    <circle cx="360" cy="290" r="18" fill="#e2e8f0"/>
-                  </svg>
-                `
-              }
-            ],
-            quiz: [
-              {
-                q: "What does the poet compare the charging train to in 'From a Railway Carriage'?",
-                options: ["Birds in the sky", "Troops charging in a battle", "Boats on the river", "Horses grazing quietly"],
-                correct: 1,
-                explanation: "Stevenson writes: 'Charging along like troops in a battle', comparing the train's fierce rush to marching soldiers."
-              }
-            ]
-          }
+          { num: 1.1, title: "Past, Present, Future (Emily Brontë)", tag: "A child compares the three phases of time to autumn breeze, summer sea, and cloudless sun.", sceneType: "nature",
+            script: "The poet asks a smiling child what the past, present, and future feel like. The child answers: the past is a soft autumn sigh, the present is a green bough of flowers, and the future is a dazzling boundless ocean!", audio: "Gentle harp chords and rustling sea breeze", note: "A golden sun rising over an infinite calm blue ocean", q: "In Emily Brontë's poem, what does the child compare the Future to?", opts: ["A rainy autumn night", "A sunlit, boundless, glorious sea", "A dry desert", "A dark thick forest"], ans: 1, exp: "The future is envisioned as a dazzling, boundless ocean stretching under infinite light." },
+          { num: 1.2, title: "Odd One In", tag: "Malti's arrival in a modern city school and overcoming peer prejudice.", sceneType: "classroom",
+            script: "Malti enters a city school with oiled hair and a traditional bindi. Some girls mock her accent. But during competitive exams, Malti's sharp intellect, humility, and sweet nature win everyone's respect!", audio: "School hallway chatter and lesson bell", note: "Classroom chalkboard glowing with student achievements", q: "What crucial life lesson does the story 'Odd One In' teach students?", opts: ["Dress only in branded clothes", "Never judge someone by their outer appearance or background", "Only talk to rich classmates", "Avoid school singing competitions"], ans: 1, exp: "The story champions diversity, empathy, and looking beyond external appearances." },
+          { num: 2.1, title: "From a Railway Carriage (R. L. Stevenson)", tag: "The exhilarating rush and rhythm of watching sights fly past a steam train window.", sceneType: "train",
+            script: "R. L. Stevenson captures the rhythm of a speeding train: 'Faster than fairies, faster than witches!' Bridges, houses, hedges, and ditches fly past like soldiers charging into battle!", audio: "Rhythmic chugging locomotive wheels on iron rails", note: "Steam locomotive billowing smoke rushing past green countryside", q: "To what does the poet compare the charging speed of the train?", opts: ["Birds soaring in sky", "Troops charging in a fierce battle", "Rivers meandering quietly", "Clouds drifting"], ans: 1, exp: "Stevenson writes: 'Charging along like troops in a battle' to evoke powerful speed." },
+          { num: 2.2, title: "The Souvenir", tag: "Sayali's futuristic school trip to the Moon and the wonder of gravity.", sceneType: "cosmic",
+            script: "Set in the future, Sayali boards a spaceship for a school excursion to the Moon! Inside lunar settlements, gravity is only one-sixth of Earth's, letting students leap like kangaroos.", audio: "Futuristic spaceship hum and lunar footsteps", note: "Sayali in a white space-suit gazing back at the blue planet Earth", q: "How strong is the gravitational pull on the Moon compared to Earth?", opts: ["Equal to Earth", "One-sixth (1/6th) of Earth's gravity", "Twice as strong", "Zero gravity always"], ans: 1, exp: "The Moon's gravity is roughly 1/6th that of Earth, making objects feel very light." },
+          { num: 4.3, title: "The Red-Headed League (Sir Arthur Conan Doyle)", tag: "Sherlock Holmes and Dr. Watson crack a clever London bank heist.", sceneType: "history",
+            script: "A pawnbroker with fiery red hair is hired for an absurd job copying the encyclopedia. Master detective Sherlock Holmes uncovers the ruse: thieves are digging a secret tunnel into a bank vault!", audio: "Midnight ticking clock and vault metal squeak", note: "Sherlock Holmes examining clues under a lantern magnifying glass", q: "Why did the cunning criminals invent the fake 'Red-Headed League'?", opts: ["To teach calligraphy", "To keep Mr. Wilson away from his shop while digging a tunnel", "To donate charity", "To publish a new book"], ans: 1, exp: "The league was an elaborate hoax to lure the pawnbroker away while they excavated a tunnel." }
         ]
       }
     ];
 
+    /* =====================================================================
+       PROCEDURAL DYNAMIC VECTOR GRAPHICS STAGE GENERATOR
+       ===================================================================== */
+    function getSceneSvg(type, title) {
+      if (type === "physics") {
+        return `
+          <svg viewBox="0 0 600 340" width="100%" height="100%">
+            <rect width="600" height="340" fill="#0f172a"/>
+            <circle cx="100" cy="170" r="40" fill="#6366f1" opacity="0.3"/>
+            <line x1="60" y1="240" x2="540" y2="240" stroke="#334155" stroke-width="4"/>
+            <g transform="translate(220, 160)">
+              <rect x="0" y="0" width="160" height="80" rx="10" fill="#4f46e5" stroke="#818cf8" stroke-width="3"/>
+              <circle cx="35" cy="80" r="16" fill="#38bdf8"/>
+              <circle cx="125" cy="80" r="16" fill="#38bdf8"/>
+              <line x1="160" y1="40" x2="250" y2="40" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+              <polygon points="250,30 270,40 250,50" fill="#f59e0b"/>
+              <text x="170" y="28" fill="#fef08a" font-weight="bold" font-size="14">Force (F)</text>
+            </g>
+          </svg>
+        `;
+      } else if (type === "botany") {
+        return `
+          <svg viewBox="0 0 600 340" width="100%" height="100%">
+            <rect width="600" height="340" fill="#064e3b" opacity="0.4"/>
+            <circle cx="480" cy="70" r="45" fill="#fef08a" opacity="0.5"/>
+            <path d="M300 340 Q310 200 280 110" stroke="#15803d" stroke-width="12" fill="none"/>
+            <ellipse cx="230" cy="200" rx="40" ry="18" fill="#22c55e" transform="rotate(-30 230 200)"/>
+            <ellipse cx="340" cy="160" rx="40" ry="18" fill="#22c55e" transform="rotate(30 340 160)"/>
+            <g transform="translate(280, 100)">
+              <circle cx="0" cy="0" r="36" fill="#f43f5e"/>
+              <circle cx="-20" cy="-20" r="22" fill="#fb7185"/>
+              <circle cx="20" cy="-20" r="22" fill="#fb7185"/>
+              <circle cx="0" cy="0" r="14" fill="#fef08a"/>
+            </g>
+          </svg>
+        `;
+      } else if (type === "cosmic") {
+        return `
+          <svg viewBox="0 0 600 340" width="100%" height="100%">
+            <rect width="600" height="340" fill="#030712"/>
+            <circle cx="120" cy="170" r="60" fill="#f59e0b"/>
+            <circle cx="120" cy="170" r="80" fill="#fef08a" opacity="0.2"/>
+            <ellipse cx="300" cy="170" rx="220" ry="80" fill="none" stroke="#334155" stroke-dasharray="6,6" stroke-width="2"/>
+            <g transform="translate(430, 140)">
+              <line x1="-15" y1="-50" x2="15" y2="100" stroke="#ef4444" stroke-width="3"/>
+              <circle cx="0" cy="25" r="40" fill="#0284c7"/>
+              <ellipse cx="-8" cy="20" rx="14" ry="10" fill="#22c55e"/>
+            </g>
+          </svg>
+        `;
+      } else if (type === "history" || type === "temple") {
+        return `
+          <svg viewBox="0 0 600 340" width="100%" height="100%">
+            <rect width="600" height="340" fill="#312e81" opacity="0.5"/>
+            <polygon points="0,340 150,160 300,340" fill="#1e1b4b"/>
+            <polygon points="200,340 380,100 560,340" fill="#0f172a"/>
+            <g transform="translate(380, 90)">
+              <line x1="0" y1="0" x2="0" y2="120" stroke="#cbd5e1" stroke-width="4"/>
+              <polygon points="0,0 60,20 0,40" fill="#f97316"/>
+              <polygon points="0,40 60,60 0,80" fill="#f97316"/>
+            </g>
+            <circle cx="280" cy="260" r="24" fill="#fbbf24" opacity="0.3"/>
+          </svg>
+        `;
+      } else if (type === "civics") {
+        return `
+          <svg viewBox="0 0 600 340" width="100%" height="100%">
+            <rect width="600" height="340" fill="#1e293b"/>
+            <rect x="70" y="40" width="22" height="250" fill="#475569" rx="4"/>
+            <rect x="508" y="40" width="22" height="250" fill="#475569" rx="4"/>
+            <g transform="translate(240, 80)">
+              <rect x="0" y="0" width="120" height="160" rx="8" fill="#78350f" stroke="#fbbf24" stroke-width="4"/>
+              <circle cx="60" cy="70" r="26" fill="none" stroke="#fbbf24" stroke-width="3"/>
+              <line x1="20" y1="120" x2="100" y2="120" stroke="#fef3c7" stroke-width="3"/>
+              <text x="35" y="145" fill="#fef08a" font-size="12" font-weight="bold">LAW</text>
+            </g>
+          </svg>
+        `;
+      } else if (type === "train") {
+        return `
+          <svg viewBox="0 0 600 340" width="100%" height="100%">
+            <rect width="600" height="340" fill="#0284c7" opacity="0.3"/>
+            <polygon points="0,340 180,180 360,340" fill="#15803d"/>
+            <polygon points="260,340 440,160 600,340" fill="#166534"/>
+            <rect x="150" y="210" width="300" height="75" rx="10" fill="#1e293b"/>
+            <circle cx="200" cy="285" r="18" fill="#e2e8f0"/>
+            <circle cx="280" cy="285" r="18" fill="#e2e8f0"/>
+            <circle cx="360" cy="285" r="18" fill="#e2e8f0"/>
+          </svg>
+        `;
+      } else if (type === "classroom") {
+        return `
+          <svg viewBox="0 0 600 340" width="100%" height="100%">
+            <rect width="600" height="340" fill="#1e293b"/>
+            <rect x="120" y="40" width="360" height="150" rx="6" fill="#064e3b" stroke="#78350f" stroke-width="8"/>
+            <text x="170" y="90" fill="#a7f3d0" font-family="Nunito" font-size="20" font-weight="bold">Class 7 Maharashtra Board</text>
+            <text x="170" y="130" fill="#fef08a" font-family="Nunito" font-size="16">Empowerment & Knowledge ✨</text>
+          </svg>
+        `;
+      } else {
+        // Nature / Landscape default
+        return `
+          <svg viewBox="0 0 600 340" width="100%" height="100%">
+            <rect width="600" height="340" fill="#0f172a"/>
+            <circle cx="480" cy="70" r="45" fill="#fef08a" opacity="0.6"/>
+            <path d="M0 240 Q150 180 300 240 T600 220 L600 340 L0 340 Z" fill="#047857"/>
+            <path d="M0 270 Q200 210 400 270 T600 250 L600 340 L0 340 Z" fill="#065f46"/>
+          </svg>
+        `;
+      }
+    }
+
+    /* =====================================================================
+       APP STATE & STORAGE
+       ===================================================================== */
     let AppState = {
       stars: parseInt(localStorage.getItem('rutvi_app_stars') || '0'),
       xp: parseInt(localStorage.getItem('rutvi_app_xp') || '0'),
       completedChapters: JSON.parse(localStorage.getItem('rutvi_completed_chapters') || '[]'),
       currentSubject: null,
-      currentChapter: null,
-      currentSceneIndex: 0,
-      currentQuizIndex: 0,
-      currentQuizScore: 0
+      currentChapter: null
     };
 
     const AudioEngine = {
@@ -1401,7 +1106,6 @@
           const gain = this.ctx.createGain();
           osc.connect(gain);
           gain.connect(this.ctx.destination);
-          
           const now = this.ctx.currentTime;
           if (type === 'correct') {
             osc.frequency.setValueAtTime(523.25, now);
@@ -1448,7 +1152,7 @@
       const textEl = document.getElementById('overall-percentage');
       if (fillEl && textEl) {
         fillEl.style.width = pct + '%';
-        textEl.innerText = pct + '%';
+        textEl.innerText = `${pct}% (${completedCount}/${totalChapters} Chapters)`;
       }
     }
 
@@ -1476,13 +1180,14 @@
       }
     }
 
+    /* 1. DASHBOARD */
     function renderDashboard() {
       updateHUD();
       const container = document.getElementById('subject-cards-container');
       container.innerHTML = '';
 
       SYLLABUS_DATA.forEach(sub => {
-        const completedInSub = sub.chapters.filter(c => AppState.completedChapters.includes(c.id)).length;
+        const completedInSub = sub.chapters.filter(c => AppState.completedChapters.includes(`${sub.id}-${c.num}`)).length;
         const subPct = Math.round((completedInSub / sub.chapters.length) * 100);
 
         const card = document.createElement('div');
@@ -1498,7 +1203,7 @@
           </div>
           <div class="subject-info">
             <h3>${sub.title}</h3>
-            <p>${sub.vernacular} • ${sub.summary}</p>
+            <p>${sub.vernacular} • ${sub.chapters.length} Chapters</p>
           </div>
           <div class="card-progress-bar">
             <div class="card-progress-fill" style="width: ${subPct}%; background: ${sub.themeColor};"></div>
@@ -1508,6 +1213,7 @@
       });
     }
 
+    /* 2. SUBJECT CHAPTER LIST */
     function openSubject(subjectId) {
       AudioEngine.playChime('click');
       const subject = SYLLABUS_DATA.find(s => s.id === subjectId);
@@ -1521,7 +1227,7 @@
           <div style="font-size: 40px; background:${subject.themeColor}22; padding:12px; border-radius:12px;">${subject.icon}</div>
           <div>
             <h2 style="font-family: var(--font-display); font-size:1.75rem;">${subject.title}</h2>
-            <p style="color:var(--text-muted); font-size:0.95rem;">${subject.vernacular} • Maharashtra Board Curriculum</p>
+            <p style="color:var(--text-muted); font-size:0.95rem;">${subject.vernacular} • Full Syllabus (${subject.chapters.length} Chapters)</p>
           </div>
         </div>
       `;
@@ -1530,19 +1236,20 @@
       chaptersContainer.innerHTML = '';
 
       subject.chapters.forEach(ch => {
-        const completed = AppState.completedChapters.includes(ch.id);
+        const chapterKey = `${subject.id}-${ch.num}`;
+        const completed = AppState.completedChapters.includes(chapterKey);
         const card = document.createElement('div');
         card.className = 'chapter-card';
         card.innerHTML = `
           <div class="chapter-meta">
-            <h4>Chapter ${ch.number}: ${ch.title} ${completed ? '✅' : ''}</h4>
-            <p>${ch.tagline}</p>
+            <h4>Chapter ${ch.num}: ${ch.title} ${completed ? '✅' : ''}</h4>
+            <p>${ch.tag}</p>
           </div>
           <div class="chapter-actions">
-            <button class="btn-action btn-movie" onclick="startMovieMode('${ch.id}')">
-              🎬 Watch Lesson
+            <button class="btn-action btn-movie" onclick="startMovieMode('${ch.num}')">
+              🎬 Watch
             </button>
-            <button class="btn-action btn-quiz" onclick="startQuizArena('${ch.id}')">
+            <button class="btn-action btn-quiz" onclick="startQuizArena('${ch.num}')">
               📝 Test
             </button>
           </div>
@@ -1553,103 +1260,56 @@
       showPanel('view-subject');
     }
 
-    function startMovieMode(chapterId) {
+    /* 3. VISUAL MOVIE SCENE PLAYER */
+    function startMovieMode(chapterNum) {
       AudioEngine.playChime('click');
-      const chapter = AppState.currentSubject.chapters.find(c => c.id === chapterId);
+      const chapter = AppState.currentSubject.chapters.find(c => String(c.num) === String(chapterNum));
       if (!chapter) return;
 
       AppState.currentChapter = chapter;
-      AppState.currentSceneIndex = 0;
 
-      renderScene();
+      document.getElementById('scene-badge').innerHTML = `🎬 Chapter ${chapter.num} Lesson`;
+      document.getElementById('audio-cue').innerHTML = `🔊 ${chapter.audio}`;
+      document.getElementById('visual-stage-container').innerHTML = getSceneSvg(chapter.sceneType, chapter.title);
+      document.getElementById('director-note').innerHTML = `🎥 ${chapter.note}`;
+      document.getElementById('spoken-script').innerHTML = chapter.script;
+
+      const dotsContainer = document.getElementById('scene-dots-container');
+      dotsContainer.innerHTML = `<div class="scene-dot active" style="width:40px;"></div>`;
+
+      speakCurrentScript();
       showPanel('view-movie');
     }
 
-    function renderScene() {
-      const chapter = AppState.currentChapter;
-      const scene = chapter.scenes[AppState.currentSceneIndex];
-      const totalScenes = chapter.scenes.length;
-
-      document.getElementById('scene-badge').innerHTML = `🎬 Scene ${AppState.currentSceneIndex + 1} of ${totalScenes}`;
-      document.getElementById('audio-cue').innerHTML = `🔊 ${scene.audioCue}`;
-      document.getElementById('visual-stage-container').innerHTML = scene.svgIllustration;
-
-      document.getElementById('director-note').innerHTML = `🎥 ${scene.directorNote}`;
-      document.getElementById('spoken-script').innerHTML = scene.script;
-
-      const dotsContainer = document.getElementById('scene-dots-container');
-      dotsContainer.innerHTML = '';
-      for (let i = 0; i < totalScenes; i++) {
-        const dot = document.createElement('div');
-        dot.className = `scene-dot ${i === AppState.currentSceneIndex ? 'active' : ''}`;
-        dotsContainer.appendChild(dot);
-      }
-
-      document.getElementById('btn-prev-scene').disabled = AppState.currentSceneIndex === 0;
-      const nextBtn = document.getElementById('btn-next-scene');
-      if (AppState.currentSceneIndex === totalScenes - 1) {
-        nextBtn.innerHTML = '📝 Start Quiz';
-        nextBtn.style.background = 'var(--success)';
-      } else {
-        nextBtn.innerHTML = '▶';
-        nextBtn.style.background = 'var(--accent-primary)';
-      }
-
-      speakCurrentScript();
-    }
-
-    function nextScene() {
-      AudioEngine.playChime('click');
-      const totalScenes = AppState.currentChapter.scenes.length;
-      if (AppState.currentSceneIndex < totalScenes - 1) {
-        AppState.currentSceneIndex++;
-        renderScene();
-      } else {
-        startQuizArena(AppState.currentChapter.id);
-      }
-    }
-
-    function prevScene() {
-      AudioEngine.playChime('click');
-      if (AppState.currentSceneIndex > 0) {
-        AppState.currentSceneIndex--;
-        renderScene();
+    function startQuizFromMovie() {
+      if (AppState.currentChapter) {
+        startQuizArena(AppState.currentChapter.num);
       }
     }
 
     function speakCurrentScript() {
-      if ('speechSynthesis' in window) {
+      if ('speechSynthesis' in window && AppState.currentChapter) {
         window.speechSynthesis.cancel();
-        const script = AppState.currentChapter.scenes[AppState.currentSceneIndex].script;
-        const utterance = new SpeechSynthesisUtterance(script);
+        const utterance = new SpeechSynthesisUtterance(AppState.currentChapter.script);
         utterance.rate = 0.95;
         utterance.pitch = 1.05;
         window.speechSynthesis.speak(utterance);
       }
     }
 
-    function startQuizArena(chapterId) {
+    /* 4. INTERACTIVE EXAM / QUIZ */
+    function startQuizArena(chapterNum) {
       AudioEngine.playChime('click');
       window.speechSynthesis && window.speechSynthesis.cancel();
 
-      const chapter = AppState.currentSubject.chapters.find(c => c.id === chapterId);
+      const chapter = AppState.currentSubject.chapters.find(c => String(c.num) === String(chapterNum));
       if (!chapter) return;
 
       AppState.currentChapter = chapter;
-      AppState.currentQuizIndex = 0;
-      AppState.currentQuizScore = 0;
 
-      renderQuizQuestion();
-      showPanel('view-quiz');
-    }
-
-    function renderQuizQuestion() {
-      const quiz = AppState.currentChapter.quiz;
-      const qData = quiz[AppState.currentQuizIndex];
-
-      document.getElementById('quiz-question-counter').innerText = `Question ${AppState.currentQuizIndex + 1} of ${quiz.length}`;
-      document.getElementById('quiz-live-score').innerText = `⭐ Score: ${AppState.currentQuizScore}`;
-      document.getElementById('quiz-question-text').innerText = qData.q;
+      document.getElementById('quiz-question-counter').innerText = `Chapter ${chapter.num} Exam Assessment`;
+      document.getElementById('quiz-live-score').innerText = `⭐ Active Exam`;
+      document.getElementById('quiz-question-text').innerText = chapter.q;
 
       const explanationEl = document.getElementById('quiz-explanation');
       explanationEl.className = 'explanation-callout';
@@ -1661,13 +1321,15 @@
       const optionsContainer = document.getElementById('quiz-options-container');
       optionsContainer.innerHTML = '';
 
-      qData.options.forEach((opt, idx) => {
+      chapter.opts.forEach((opt, idx) => {
         const btn = document.createElement('button');
         btn.className = 'quiz-option-btn';
         btn.innerHTML = `<span>${opt}</span><span id="opt-icon-${idx}">⚪</span>`;
-        btn.onclick = () => selectQuizAnswer(idx, qData.correct, qData.explanation);
+        btn.onclick = () => selectQuizAnswer(idx, chapter.ans, chapter.exp);
         optionsContainer.appendChild(btn);
       });
+
+      showPanel('view-quiz');
     }
 
     function selectQuizAnswer(selectedIdx, correctIdx, explanation) {
@@ -1675,15 +1337,13 @@
       allButtons.forEach(b => b.disabled = true);
 
       const explanationEl = document.getElementById('quiz-explanation');
-      explanationEl.innerHTML = `<strong>💡 Board Solution Note:</strong> ${explanation}`;
+      explanationEl.innerHTML = `<strong>💡 Maharashtra Board Solution Note:</strong> ${explanation}`;
       explanationEl.classList.add('show');
 
       if (selectedIdx === correctIdx) {
         AudioEngine.playChime('correct');
         allButtons[selectedIdx].classList.add('correct');
         document.getElementById(`opt-icon-${selectedIdx}`).innerText = '✅';
-        AppState.currentQuizScore += 10;
-        document.getElementById('quiz-live-score').innerText = `⭐ Score: ${AppState.currentQuizScore}`;
       } else {
         AudioEngine.playChime('wrong');
         allButtons[selectedIdx].classList.add('wrong');
@@ -1695,32 +1355,22 @@
       document.getElementById('btn-quiz-next').style.display = 'block';
     }
 
-    function nextQuizQuestion() {
-      AudioEngine.playChime('click');
-      const quiz = AppState.currentChapter.quiz;
-      if (AppState.currentQuizIndex < quiz.length - 1) {
-        AppState.currentQuizIndex++;
-        renderQuizQuestion();
-      } else {
-        finishQuiz();
-      }
-    }
-
     function finishQuiz() {
+      AudioEngine.playChime('correct');
       AppState.stars += 30;
       AppState.xp += 60;
 
-      if (!AppState.completedChapters.includes(AppState.currentChapter.id)) {
-        AppState.completedChapters.push(AppState.currentChapter.id);
+      const chapterKey = `${AppState.currentSubject.id}-${AppState.currentChapter.num}`;
+      if (!AppState.completedChapters.includes(chapterKey)) {
+        AppState.completedChapters.push(chapterKey);
       }
 
       saveState();
 
       document.getElementById('earned-stars').innerText = '30';
       document.getElementById('earned-xp').innerText = '60';
-      document.getElementById('result-subtitle').innerText = `You finished the exam for ${AppState.currentChapter.title} with a score of ${AppState.currentQuizScore}!`;
+      document.getElementById('result-subtitle').innerText = `You mastered Chapter ${AppState.currentChapter.num}: ${AppState.currentChapter.title}!`;
 
-      AudioEngine.playChime('correct');
       showPanel('view-result');
     }
 
